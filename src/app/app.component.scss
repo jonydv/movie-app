@@ -1,0 +1,10 @@
+@import "src/styles/variables/variables.scss";
+@import "src/styles/mixins/media-querys.scss";
+.container {
+  max-width: 100%;
+  // margin: auto;
+
+  @include mobile {
+    padding: 0 1.125rem;
+  }
+}

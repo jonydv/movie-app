@@ -1,1 +1,39 @@
-<p>home works!</p>
+<ng-container
+  *ngIf="{
+    nowPlayingMovies: nowPlayingMovies$ | async,
+    upcomingMovies: upcomingMovies$ | async,
+    topRatedMovies: topRatedMovies$ | async,
+    isMobile: isMobile$ | async
+  } as data"
+>
+  <div class="home-container">
+    <div class="home-container__carousel">
+      <app-movie-carousel
+        *ngIf="data.nowPlayingMovies != null"
+        [movies]="data.nowPlayingMovies"
+        [isMobile]="data.isMobile!"
+      ></app-movie-carousel>
+    </div>
+  </div>
+  <div class="home-upcoming">
+    <app-movie-poster-carousel
+      *ngIf="data.upcomingMovies != null"
+      [movies]="data.upcomingMovies"
+      [isMobile]="data.isMobile!"
+      [title]="upcomingTitle"
+      [subtitle]="upcomingSubtitle"
+      [link]="upcomingLink"
+      [linkTitle]="upcomingLinkTitle"
+    ></app-movie-poster-carousel>
+  </div>
+  <div class="home-top-rated">
+    <app-movies-grid
+      *ngIf="data.topRatedMovies != null"
+      [movies]="data.topRatedMovies"
+      [isMobile]="data.isMobile!"
+      [title]="topRatedTitle"
+      [link]="topRatedLink"
+      [linkTitle]="topRatedLinkTitle"
+    ></app-movies-grid>
+  </div>
+</ng-container>

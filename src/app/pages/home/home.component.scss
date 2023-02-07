@@ -1,0 +1,8 @@
+@import "src/styles/variables/variables.scss";
+@import "src/styles/mixins/media-querys.scss";
+.home-upcoming,
+.home-top-rated {
+  max-width: $max-width;
+  margin: auto;
+  padding: 1.5rem 0;
+}

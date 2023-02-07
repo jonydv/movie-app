@@ -1,0 +1,92 @@
+@import "src/styles/variables/variables.scss";
+@import "src/styles/mixins/media-querys.scss";
+.movies-poster {
+  &__carousel {
+    position: relative;
+  }
+  &__info {
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      cursor: default;
+
+      &-value {
+        font-size: $font-title;
+        color: $primary;
+        width: fit-content;
+        @include mobile {
+          font-size: $font-title-mobile;
+        }
+      }
+      &-link {
+        font-size: $font-subtitle;
+        color: $link-color;
+        text-decoration: none;
+        @include mobile {
+          font-size: $font-subtitle-mobile;
+        }
+        i {
+          font-size: $font-text;
+        }
+        &:hover {
+          filter: brightness(calc(84 / 100));
+        }
+      }
+    }
+    &-subtitle {
+      color: $text;
+      font-size: $font-text;
+      margin-bottom: 1.25rem;
+      cursor: default;
+    }
+  }
+  .left {
+    position: absolute;
+    top: 50%;
+    left: -3rem;
+    cursor: pointer;
+    color: $text;
+    font-size: 1.5rem;
+    z-index: 2;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    background: transparent;
+    &:hover {
+      filter: brightness(calc(84 / 100));
+    }
+    @include mobile {
+      left: 0rem;
+      font-size: 1.25rem;
+      padding: 0.5rem;
+    }
+  }
+
+  .right {
+    position: absolute;
+    top: 50%;
+    right: -3rem;
+    cursor: pointer;
+    color: $text;
+    font-size: 1.5rem;
+    z-index: 2;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    background: transparent;
+    &:hover {
+      filter: brightness(calc(84 / 100));
+    }
+    @include mobile {
+      right: 0rem;
+      font-size: 1.25rem;
+      padding: 0.5rem;
+    }
+  }
+
+  .swiper-button-disabled {
+    color: #d6d6d6;
+    cursor: not-allowed;
+  }
+}

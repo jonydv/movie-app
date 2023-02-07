@@ -8,7 +8,7 @@ const routes: Routes = [
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'movie',
+    path: 'movie/:id',
     loadChildren: () =>
       import('./pages/movie-details/movie-details.module').then(
         (m) => m.MovieDetailsModule
@@ -20,6 +20,24 @@ const routes: Routes = [
       import('./pages/upcoming-movies/upcoming-movies.module').then(
         (m) => m.UpcomingMoviesModule
       ),
+  },
+  {
+    path: 'movies',
+    loadChildren: () =>
+      import('./pages/movie-list/movie-list.module').then(
+        (m) => m.MovieListModule
+      ),
+  },
+  {
+    path: 'not-found',
+    loadChildren: () =>
+      import('./pages/not-found/not-found.module').then(
+        (m) => m.NotFoundModule
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found',
   },
 ];
 

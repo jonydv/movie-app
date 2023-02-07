@@ -1,0 +1,35 @@
+<div class="movies-poster">
+  <div class="movies-poster__info">
+    <div class="movies-poster__info-title">
+      <h2 class="movies-poster__info-title-value">{{ title }}</h2>
+      <a [routerLink]="link" class="movies-poster__info-title-link"
+        >{{ linkTitle }} <i class="fas fa-chevron-right"></i
+      ></a>
+    </div>
+
+    <h3 class="movies-poster__info-subtitle">{{ subtitle }}</h3>
+  </div>
+  <div class="movies-poster__carousel">
+    <swiper
+      [config]="swiperConfig"
+      [navigation]="{
+        nextEl: '.right',
+        prevEl: '.left'
+      }"
+      [autoplay]="{ delay: 5000 }"
+      [loop]="true"
+    >
+      <ng-container *ngFor="let movie of movies; index as i">
+        <ng-template swiperSlide>
+          <app-movie [movie]="movie"></app-movie>
+        </ng-template>
+      </ng-container>
+    </swiper>
+    <button class="left">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="right">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>

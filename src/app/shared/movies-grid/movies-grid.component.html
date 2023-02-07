@@ -1,0 +1,31 @@
+<div class="movies-grid__info">
+  <h3 class="movies-grid__info-title">
+    {{ title }}
+  </h3>
+  <a [routerLink]="link" class="movies-grid__info-link"
+    >{{ linkTitle }} <i class="fas fa-chevron-right"></i
+  ></a>
+</div>
+<div class="movies-grid">
+  <div class="movies-grid__poster">
+    <img
+      [src]="moviePosterBaseUrl + movies[posterIndex].poster_path"
+      [alt]="movies[posterIndex].original_title"
+      [routerLink]="'/movie/' + movies[posterIndex].id"
+    />
+  </div>
+  <div class="movies-grid__backdrops">
+    <img
+      [src]="movieBackdropBaseUrl + movies[backdropOneIndex].backdrop_path"
+      [alt]="movies[backdropOneIndex].original_title"
+      [routerLink]="'/movie/' + movies[backdropOneIndex].id"
+      class="movies-grid__backdrops-img"
+    />
+    <img
+      [src]="movieBackdropBaseUrl + movies[backdropTwoIndex].backdrop_path"
+      [alt]="movies[backdropTwoIndex].original_title"
+      [routerLink]="'/movie/' + movies[backdropTwoIndex].id"
+      class="movies-grid__backdrops-img"
+    />
+  </div>
+</div>
