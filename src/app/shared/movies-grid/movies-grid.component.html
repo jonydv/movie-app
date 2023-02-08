@@ -16,15 +16,29 @@
   </div>
   <div class="movies-grid__backdrops">
     <img
-      [src]="movieBackdropBaseUrl + movies[backdropOneIndex].backdrop_path"
-      [alt]="movies[backdropOneIndex].original_title"
-      [routerLink]="'/movie/' + movies[backdropOneIndex].id"
+      [src]="moviePosterBaseUrl + movies[posterOneIndex].poster_path"
+      [alt]="movies[posterOneIndex].original_title"
+      [routerLink]="'/movie/' + movies[posterOneIndex].id"
       class="movies-grid__backdrops-img"
     />
     <img
-      [src]="movieBackdropBaseUrl + movies[backdropTwoIndex].backdrop_path"
-      [alt]="movies[backdropTwoIndex].original_title"
-      [routerLink]="'/movie/' + movies[backdropTwoIndex].id"
+      [src]="moviePosterBaseUrl + movies[posterTwoIndex].poster_path"
+      [alt]="movies[posterTwoIndex].original_title"
+      [routerLink]="'/movie/' + movies[posterTwoIndex].id"
+      class="movies-grid__backdrops-img"
+    />
+
+    <img
+      [src]="moviePosterBaseUrl + movies[posterThreeIndex].poster_path"
+      [alt]="movies[posterThreeIndex].original_title"
+      [routerLink]="'/movie/' + movies[posterThreeIndex].id"
+      class="movies-grid__backdrops-img"
+    />
+
+    <img
+      [src]="moviePosterBaseUrl + movies[posterFourIndex].poster_path"
+      [alt]="movies[posterFourIndex].original_title"
+      [routerLink]="'/movie/' + movies[posterFourIndex].id"
       class="movies-grid__backdrops-img"
     />
   </div>
