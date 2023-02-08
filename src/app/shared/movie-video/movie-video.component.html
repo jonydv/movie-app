@@ -1,0 +1,8 @@
+<ng-container *ngIf="videoUrl.length > 0">
+  <iframe
+    [src]="videoUrl | sanitizeUrl"
+    allowfullscreen
+    frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; clipboard-write"
+  ></iframe>
+</ng-container>
