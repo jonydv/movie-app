@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Movie, MoviesData } from '../interfaces/movie-data.interface';
+import { MoviesData } from '../interfaces/movie-data.interface';
 import { Observable } from 'rxjs';
+import { MovieDetail } from '../interfaces/movie-detail.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -30,9 +31,9 @@ export class MovieRequestService {
     return this.http.get<MoviesData>(url);
   }
 
-  getMovieDetails(id: string): Observable<Movie> {
+  getMovieDetails(id: string): Observable<MovieDetail> {
     const url: string = `${environment.baseUrl}/movie/${id}?${environment.language}&append_to_response=videos`;
-    return this.http.get<Movie>(url);
+    return this.http.get<MovieDetail>(url);
   }
   getSearchResult() {}
 }
