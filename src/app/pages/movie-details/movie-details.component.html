@@ -37,7 +37,10 @@
       <div class="movie-details__top">
         <img [src]="posterUrl" [alt]="data.movie.original_title" />
         <div class="movie-details__top-video">
-          <app-movie-video [movie]="data.movie"></app-movie-video>
+          <app-movie-video
+            [movie]="data.movie"
+            *ngIf="data.movie.videos.results.length > 0"
+          ></app-movie-video>
         </div>
       </div>
     </div>
