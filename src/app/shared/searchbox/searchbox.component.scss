@@ -1,0 +1,79 @@
+@import "src/styles/variables/variables.scss";
+@import "src/styles/mixins/media-querys.scss";
+
+:host {
+  margin-left: auto;
+  width: 30%;
+  position: relative;
+}
+div {
+  &.searchbox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 2px solid $inverse;
+    background: $dark;
+    border-radius: 25px;
+    input {
+      width: 100%;
+      border-radius: 25px;
+      height: 2rem;
+      border: none;
+      padding: 5px 5px 5px 12px;
+      background: $dark;
+      color: $text;
+      font-size: $font-text;
+      &:focus {
+        outline: none;
+      }
+    }
+    i {
+      color: $text;
+      font-size: $font-subtitle-mobile;
+      position: absolute;
+      right: 0.75rem;
+      cursor: pointer;
+      &.fa-times {
+        right: 2.5rem;
+        color: $secondary;
+      }
+    }
+  }
+  &.results {
+    width: 100%;
+    background: $dark;
+    min-height: 3rem;
+    position: absolute;
+    top: 2.6rem;
+    padding-top: 1rem;
+    border-radius: 20px;
+    color: $text;
+    border: 1px solid $inverse;
+  }
+  &.no-results {
+    width: 100%;
+    background: $dark;
+    height: 3rem;
+    position: absolute;
+    top: 2.6rem;
+    padding-top: 1rem;
+    border-radius: 20px;
+    border: 1px solid $inverse;
+    &__text,
+    p {
+      color: $text;
+      font-size: $font-text;
+      padding-left: 12px;
+      display: flex;
+      column-gap: 0.25rem;
+      span {
+        font-weight: bold;
+        max-width: 150px;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

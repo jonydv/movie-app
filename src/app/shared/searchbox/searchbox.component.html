@@ -1,0 +1,33 @@
+<ng-container *ngIf="{ results: results$ | async } as data">
+  <div class="searchbox">
+    <input
+      type="text"
+      [formControl]="query"
+      (keydown.enter)="submitSearch()"
+      [placeholder]="placeholderSearch"
+    />
+    <i class="fas fa-search" (click)="submitSearch()"></i>
+    <i
+      class="fas fa-times"
+      (click)="resetSearch()"
+      *ngIf="query.value.length > 0"
+    ></i>
+  </div>
+  <ng-container *ngIf="haveResults && query.value.length > 2; else noResults">
+    <div class="results">
+      <ng-container *ngFor="let movie of data.results?.results?.splice(0, 5)">
+        <app-search-result-item
+          [movie]="movie"
+          (navigated)="navigateToMovieDetail($event)"
+        ></app-search-result-item>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #noResults>
+    <div class="no-results" *ngIf="query.value.length > 2">
+      <p class="no-results__text">
+        {{ noResultsText }} <span>{{ query.value }}</span>
+      </p>
+    </div>
+  </ng-template>
+</ng-container>
