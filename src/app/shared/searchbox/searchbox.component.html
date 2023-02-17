@@ -1,6 +1,7 @@
 <ng-container *ngIf="{ results: results$ | async } as data">
   <div class="searchbox">
     <input
+      #input
       type="text"
       [formControl]="query"
       (keydown.enter)="submitSearch()"
@@ -12,13 +13,16 @@
       (click)="resetSearch()"
       *ngIf="query.value.length > 0"
     ></i>
+    <button *ngIf="isMobile" type="button" class="searchbox__close">
+      {{ closeText }}
+    </button>
   </div>
   <ng-container *ngIf="haveResults && query.value.length > 2; else noResults">
     <div class="results">
-      <ng-container *ngFor="let movie of data.results?.results?.splice(0, 5)">
+      <ng-container *ngFor="let movie of data.results?.results?.slice(0, 5)">
         <app-search-result-item
           [movie]="movie"
-          (navigated)="navigateToMovieDetail($event)"
+          (navigated)="navigateToMovieDetail($event, isMobile)"
         ></app-search-result-item>
       </ng-container>
     </div>

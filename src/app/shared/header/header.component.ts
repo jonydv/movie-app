@@ -12,6 +12,7 @@ import { Header } from '../interfaces/header.interface';
 export class HeaderComponent {
   isMobile$: Observable<boolean> = this.breakpointService.isMobile();
   showNav: boolean = false;
+  showSearchBox: boolean = false;
   navItems: Header[] = [
     { title: 'Home', link: '/' },
 
@@ -31,5 +32,13 @@ export class HeaderComponent {
     } else {
       this.scrollLockService.unlock();
     }
+  }
+
+  toggleShowSearchbox() {
+    this.showSearchBox = !this.showSearchBox;
+  }
+
+  closeSearch(event: boolean) {
+    this.showSearchBox = false;
   }
 }

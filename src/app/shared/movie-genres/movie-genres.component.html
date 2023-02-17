@@ -1,0 +1,8 @@
+<div class="movie-details__genres" *ngIf="genres">
+  <a
+    *ngFor="let genre of genres"
+    [routerLink]="'/'"
+    class="movie-details__genres-item"
+    >{{ genre.name }}</a
+  >
+</div>

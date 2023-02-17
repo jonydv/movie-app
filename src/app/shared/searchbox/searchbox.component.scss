@@ -15,6 +15,23 @@ div {
     border: 2px solid $inverse;
     background: $dark;
     border-radius: 25px;
+    button {
+      border: 1px solid $secondary;
+      outline: none;
+      background: transparent;
+      color: $text;
+      height: 2rem;
+      margin-left: 0.25rem;
+      text-transform: capitalize;
+      border-radius: 5px;
+    }
+    @include mobile {
+      width: 98%;
+      border: none;
+      border-radius: 5px;
+      margin: auto;
+      padding-bottom: 0.5rem;
+    }
     input {
       width: 100%;
       border-radius: 25px;
@@ -24,6 +41,10 @@ div {
       background: $dark;
       color: $text;
       font-size: $font-text;
+      @include mobile {
+        border-radius: 5px;
+        border: 1px solid $secondary;
+      }
       &:focus {
         outline: none;
       }
@@ -34,9 +55,15 @@ div {
       position: absolute;
       right: 0.75rem;
       cursor: pointer;
+      @include mobile {
+        right: 3.75rem;
+      }
       &.fa-times {
         right: 2.5rem;
         color: $secondary;
+        @include mobile {
+          right: 5.75rem;
+        }
       }
     }
   }
@@ -50,6 +77,12 @@ div {
     border-radius: 20px;
     color: $text;
     border: 1px solid $inverse;
+    @include mobile {
+      width: 98%;
+      border-radius: 5px;
+      left: 1%;
+      top: 2.3rem;
+    }
   }
   &.no-results {
     width: 100%;
@@ -60,6 +93,12 @@ div {
     padding-top: 1rem;
     border-radius: 20px;
     border: 1px solid $inverse;
+    @include mobile {
+      width: 98%;
+      border-radius: 5px;
+      left: 1%;
+      top: 2.3rem;
+    }
     &__text,
     p {
       color: $text;

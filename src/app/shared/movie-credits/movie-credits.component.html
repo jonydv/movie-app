@@ -1,0 +1,24 @@
+<div class="credits">
+  <div class="credits__cast">
+    <div class="credits__cast-header">
+      <h3 class="credits__cast-header__title">{{ castTitle }}</h3>
+      <!-- <a href="" class="credits__cast-header__link"
+        >{{ castLink }} <i class="fas fa-chevron-right"></i
+      ></a> -->
+    </div>
+    <div class="credits__cast-container">
+      <div
+        class="credits__cast-container__item"
+        *ngFor="let cast of credits?.cast?.slice(0, 10)"
+      >
+        <img
+          [src]="baseImageUrl + cast.profile_path"
+          [alt]="cast.name"
+          *ngIf="cast.profile_path"
+        />
+        <img [src]="profileUrl" [alt]="cast.name" *ngIf="!cast.profile_path" />
+        <p class="credits__cast-container__item-name">{{ cast.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,7 +15,10 @@ export class SearchResultItemComponent implements OnInit {
 
   constructor(private router: Router) {}
   ngOnInit(): void {
-    this.posterPath = `${environment.baseImageUrl}w300/${this.movie.poster_path}`;
+    this.posterPath =
+      this.movie.poster_path != null
+        ? `${environment.baseImageUrl}w300/${this.movie.poster_path}`
+        : '../../../../assets/images/no-poster.jpg';
   }
 
   navigateToMovieDetails(id: string | number): void {

@@ -2,44 +2,27 @@
   <h3 class="movies-grid__info-title">
     {{ title }}
   </h3>
-  <a [routerLink]="link" class="movies-grid__info-link"
+  <a *ngIf="linkTitle" [routerLink]="link" class="movies-grid__info-link"
     >{{ linkTitle }} <i class="fas fa-chevron-right"></i
   ></a>
 </div>
 <div class="movies-grid">
   <div class="movies-grid__poster">
     <img
-      [src]="moviePosterBaseUrl + movies[posterIndex].poster_path"
+      [src]="moviePosterBaseUrl"
       [alt]="movies[posterIndex].original_title"
       [routerLink]="'/movie/' + movies[posterIndex].id"
+      [ngClass]="{ 'no-poster': movies[posterIndex].poster_path == null }"
     />
   </div>
   <div class="movies-grid__backdrops">
     <img
-      [src]="moviePosterBaseUrl + movies[posterOneIndex].poster_path"
-      [alt]="movies[posterOneIndex].original_title"
-      [routerLink]="'/movie/' + movies[posterOneIndex].id"
+      *ngFor="let poster of posters; index as i"
+      [src]="poster"
+      [alt]="movies[i].original_title"
+      [routerLink]="'/movie/' + ids[i]"
       class="movies-grid__backdrops-img"
-    />
-    <img
-      [src]="moviePosterBaseUrl + movies[posterTwoIndex].poster_path"
-      [alt]="movies[posterTwoIndex].original_title"
-      [routerLink]="'/movie/' + movies[posterTwoIndex].id"
-      class="movies-grid__backdrops-img"
-    />
-
-    <img
-      [src]="moviePosterBaseUrl + movies[posterThreeIndex].poster_path"
-      [alt]="movies[posterThreeIndex].original_title"
-      [routerLink]="'/movie/' + movies[posterThreeIndex].id"
-      class="movies-grid__backdrops-img"
-    />
-
-    <img
-      [src]="moviePosterBaseUrl + movies[posterFourIndex].poster_path"
-      [alt]="movies[posterFourIndex].original_title"
-      [routerLink]="'/movie/' + movies[posterFourIndex].id"
-      class="movies-grid__backdrops-img"
+      [ngClass]="{ 'no-poster': movies[i].poster_path == null }"
     />
   </div>
 </div>

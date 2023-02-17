@@ -1,8 +1,10 @@
+import { MoviesData } from './movie-data.interface';
 export interface MovieDetail {
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection: null;
   budget: number;
+  credits: Credits;
   genres: Genre[];
   homepage: string;
   id: number;
@@ -14,9 +16,12 @@ export interface MovieDetail {
   poster_path: string;
   production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
+  recommendations: MoviesData;
   release_date: Date;
   revenue: number;
+  reviews: Reviews;
   runtime: number;
+  similar: MoviesData;
   spoken_languages: SpokenLanguage[];
   status: string;
   tagline: string;
@@ -73,4 +78,50 @@ export interface Video {
   official: boolean;
   published_at: Date;
   id: string;
+}
+
+export interface Credits {
+  cast: Cast[];
+  crew: Cast[];
+}
+
+export interface Cast {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: null | string;
+  cast_id?: number;
+  character?: string;
+  credit_id: string;
+  order?: number;
+  department?: string;
+  job?: string;
+}
+
+export interface Reviews {
+  page: number;
+  results: Review[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface Review {
+  author: string;
+  author_details: AuthorDetails;
+  content: string;
+  created_at: Date;
+  id: string;
+  updated_at: Date;
+  url: string;
+}
+
+export interface AuthorDetails {
+  name: string;
+  username: string;
+  avatar_path: string;
+  rating: number | null;
 }

@@ -1,0 +1,29 @@
+@import "src/styles/variables/variables.scss";
+@import "src/styles/mixins/media-querys.scss";
+.movie-details__overview {
+  margin: 1rem 0;
+  &-title {
+    font-size: $font-subtitle;
+    color: $text-color;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid $primary;
+  }
+  &-paragraph {
+    margin: 1rem 0;
+    font-size: $font-text;
+    color: $text;
+  }
+  &-director,
+  &-tagline {
+    display: flex;
+    column-gap: 0.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid $text-color;
+    &-key,
+    &-value {
+      font-size: $font-text;
+      color: $text;
+    }
+  }
+}

@@ -12,8 +12,9 @@ export class MovieComponent implements OnInit {
   imageUrl: string = '';
   movieDetailUrl: string = '';
 
+  constructor() {}
   ngOnInit(): void {
-    this.imageUrl = `${environment.baseImageUrl}w500/${this.movie?.poster_path}`;
+    this.imageUrl = `${environment.baseImageUrl}w300/${this.movie?.poster_path}`;
     this.movieDetailUrl = `/movie/${this.movie?.id}`;
   }
 }

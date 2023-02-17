@@ -35,7 +35,10 @@ export class UpcomingMoviesComponent {
     this.movieRequest.getUpcoming(page).subscribe((data) => {
       this.totalPages = data.total_pages;
       this.totalResults = data.total_results;
-      this.movies = [...this.movies, ...data.results];
+      this.movies = [
+        ...this.movies,
+        ...data.results.filter((movie) => movie.poster_path != null),
+      ];
       this.movies$.next(this.movies);
       this.loading = false;
     });

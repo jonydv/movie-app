@@ -1,0 +1,63 @@
+@import "src/styles/variables/variables.scss";
+@import "src/styles/mixins/media-querys.scss";
+.movie-details {
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: unset;
+      row-gap: 0.75rem;
+    }
+    &__summary {
+      &-title {
+        font-size: $font-title;
+        color: $title;
+        @include mobile {
+          font-size: $font-title-mobile;
+        }
+      }
+
+      &__details {
+        margin-top: 0.75rem;
+        display: flex;
+        column-gap: 0.75rem;
+        &-date,
+        &-runtime {
+          color: $secondary;
+          font-size: $nav-text;
+        }
+      }
+    }
+    &__popularity {
+      &__rate {
+        @include mobile {
+          display: flex;
+          align-items: center;
+          column-gap: 0.75rem;
+        }
+        &-title {
+          font-size: $font-subtitle;
+          @include mobile {
+            font-size: $font-subtitle-mobile;
+          }
+        }
+        &__box {
+          margin-top: 0.75rem;
+          i {
+            color: $primary;
+          }
+          @include mobile {
+            margin-top: 0;
+          }
+          &-value {
+            color: $secondary;
+            font-size: $nav-text;
+          }
+        }
+      }
+    }
+  }
+}

@@ -22,6 +22,7 @@
       color: $text;
     }
     &__date {
+      font-size: $nav-text;
       color: $secondary;
     }
     &__overview {
@@ -31,6 +32,9 @@
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      @include mobile {
+        font-size: $nav-text;
+      }
     }
   }
 }

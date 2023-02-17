@@ -1,48 +1,32 @@
-<ng-container *ngIf="{ movie: movie$ | async } as data">
+<ng-container
+  *ngIf="{ movie: movie$ | async, isMobile: isMobile$ | async } as data"
+>
   <ng-container *ngIf="data.movie != null; else spinner">
     <div class="movie-details">
-      <div class="movie-details__info">
-        <div class="movie-details__info__summary">
-          <h1 class="movie-details__info__summary-title">
-            {{ data.movie.original_title }}
-          </h1>
-          <div class="movie-details__info__summary__details">
-            <p class="movie-details__info__summary__details-date">
-              Release: {{ data.movie.release_date }}
-            </p>
-            <p class="movie-details__info__summary__details-runtime">
-              Runtime: {{ data.movie.runtime }} min
-            </p>
-          </div>
-        </div>
-        <div class="movie-details__info__popularity">
-          <div class="movie-details__info__popularity__rate">
-            <h2 class="movie-details__info__popularity__rate-title">
-              {{ ratingText }}
-            </h2>
-            <div class="movie-details__info__popularity__rate__box">
-              <p class="movie-details__info__popularity__rate__box-value">
-                <i class="fas fa-star"></i>
-                {{ data.movie.vote_average }}
-                {{
-                  data.movie.vote_count
-                    ? " / " + votesText + data.movie.vote_count
-                    : ""
-                }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-movie-info-details [movie]="data.movie"></app-movie-info-details>
       <div class="movie-details__top">
         <img [src]="posterUrl" [alt]="data.movie.original_title" />
-        <div class="movie-details__top-video">
+
+        <div
+          class="movie-details__top-video"
+          [ngClass]="{ 'no-video': data.movie.videos.results.length == 0 }"
+        >
           <app-movie-video
             [movie]="data.movie"
             *ngIf="data.movie.videos.results.length > 0"
           ></app-movie-video>
         </div>
       </div>
+
+      <app-movie-genres [genres]="data.movie.genres"></app-movie-genres>
+
+      <app-movie-plot [movie]="data.movie"></app-movie-plot>
+      <app-movie-credits [credits]="data.movie.credits"></app-movie-credits>
+      <app-movies-grid
+        *ngIf="data.movie?.recommendations?.results?.length"
+        [movies]="data.movie.recommendations.results"
+        [title]="similarTitle"
+      ></app-movies-grid>
     </div>
   </ng-container>
   <ng-template #spinner>

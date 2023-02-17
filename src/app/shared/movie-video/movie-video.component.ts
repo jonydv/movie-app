@@ -23,15 +23,16 @@ export class MovieVideoComponent implements OnInit, OnChanges {
   initializeVideo() {
     let videoTrailer =
       this.movie?.videos?.results?.filter(
-        (video) => video?.type == 'Trailer'
+        (video) => video?.type == 'Trailer' || video?.type == 'Teaser'
       )[0] || null;
     this.videoUrl = this.getVideoUrl(videoTrailer!) || '';
+    console.log(this.videoUrl, videoTrailer);
   }
   getVideoUrl(video: Video): string {
-    if (video.site == 'YouTube') {
-      return `https://www.youtube.com/embed/${video.key}?enablejsapi=1&mute=0`;
+    if (video?.site == 'YouTube') {
+      return `https://www.youtube.com/embed/${video?.key}?enablejsapi=1&mute=0`;
     } else {
-      return `https://vimeo.com/${video.key}`;
+      return `https://player.vimeo.com/video/${video?.key}`;
     }
   }
 }

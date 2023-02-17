@@ -9,13 +9,7 @@
         class="header-container__nav"
         *ngIf="!info.isMobile; else mobileHeader"
       >
-        <div class="header-container__nav__logo" routerLink="/">
-          <img
-            src="../../../../assets/logos/jdv-logo.svg"
-            alt="jdv logo"
-            loading="lazy"
-          />
-        </div>
+        <app-site-logo></app-site-logo>
         <app-searchbox></app-searchbox>
         <div class="header-container__nav__links">
           <ng-container *ngFor="let item of navItems">
@@ -53,22 +47,21 @@
         </div>
       </nav>
     </div>
+    <app-searchbox
+      *ngIf="showSearchBox && info.isMobile"
+      [isMobile]="info.isMobile!"
+      (close)="closeSearch($event)"
+    ></app-searchbox>
   </header>
   <ng-template #mobileHeader>
-    <div class="header-container__logo" routerLink="/">
-      <img
-        src="../../../../assets/logos/jdv-logo.svg"
-        alt="jdv logo"
-        loading="lazy"
-      />
-    </div>
-    <a
+    <app-site-logo></app-site-logo>
+    <button
       class="header-container__icon"
-      href="https://www.linkedin.com/in/jonatan-villalba-9126951b9/"
-      target="_blank"
+      type="button"
+      (click)="toggleShowSearchbox()"
     >
-      <i class="fab fa-linkedin"></i>
-    </a>
+      <i class="fas fa-search"></i>
+    </button>
     <div class="header-container__hamburger">
       <i
         [class]="showNav ? 'fas fa-times' : 'fas fa-bars'"
