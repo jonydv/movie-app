@@ -1,7 +1,7 @@
 <ng-container
   *ngIf="{ movie: movie$ | async, isMobile: isMobile$ | async } as data"
 >
-  <ng-container *ngIf="data.movie != null; else spinner">
+  <ng-container *ngIf="data.movie != null">
     <div class="movie-details">
       <app-movie-info-details [movie]="data.movie"></app-movie-info-details>
       <div class="movie-details__top">
@@ -29,7 +29,4 @@
       ></app-movies-grid>
     </div>
   </ng-container>
-  <ng-template #spinner>
-    <app-spinner-with-backdrop></app-spinner-with-backdrop>
-  </ng-template>
 </ng-container>
