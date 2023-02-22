@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HeaderModule } from './shared/header/header.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { SpinnerWithBackdropModule } from './shared/spinner-with-backdrop/spinner-with-backdrop.module';
+import { InterceptorsModule } from './interceptors/interceptors.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,16 +15,12 @@ import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    InterceptorsModule,
     HeaderModule,
     HttpClientModule,
+    SpinnerWithBackdropModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useExisting: AuthTokenInterceptor,
-      multi: true,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
