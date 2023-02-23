@@ -1,8 +1,15 @@
 <ng-container *ngIf="videoUrl.length > 0">
   <iframe
+    *ngIf="playVideo"
     [src]="videoUrl | sanitizeUrl"
     allowfullscreen
     frameborder="0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; clipboard-write"
   ></iframe>
+  <div class="video-backdrop" *ngIf="!playVideo">
+    <img [src]="backdropUrl" [alt]="movie?.title" />
+    <button class="video-backdrop__button" (click)="togglePlay()">
+      <i class="fas fa-play"></i>
+    </button>
+  </div>
 </ng-container>
