@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieRequestService } from '../../services/movie-request.service';
 import { Observable, switchMap, tap } from 'rxjs';
@@ -28,7 +28,6 @@ export class MovieDetailsComponent {
       switchMap((params) => {
         return this.movieRequest.getMovieDetails(params['id']).pipe(
           tap((movie) => {
-            console.log(movie);
             this.posterUrl =
               movie.poster_path != null
                 ? `${environment.baseImageUrl}w300/${movie.poster_path}`
