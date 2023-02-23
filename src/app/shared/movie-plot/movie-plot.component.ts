@@ -25,7 +25,7 @@ export class MoviePlotComponent {
   }
   initializeDirectorName() {
     this.directorName =
-      this.movie?.credits.crew.filter((person) => person.job == 'Director')[0]
-        .name || null;
+      this.movie?.credits?.crew.filter((person) => person?.job == 'Director')[0]
+        ?.name || null;
   }
 }
