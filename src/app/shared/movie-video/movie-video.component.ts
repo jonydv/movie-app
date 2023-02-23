@@ -26,7 +26,6 @@ export class MovieVideoComponent implements OnInit, OnChanges {
         (video) => video?.type == 'Trailer' || video?.type == 'Teaser'
       )[0] || null;
     this.videoUrl = this.getVideoUrl(videoTrailer!) || '';
-    console.log(this.videoUrl, videoTrailer);
   }
   getVideoUrl(video: Video): string {
     if (video?.site == 'YouTube') {
