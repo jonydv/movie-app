@@ -1,9 +1,10 @@
 <div class="movie-details__genres" *ngIf="genres">
   <a
-    *ngFor="let genre of genres"
-    [routerLink]="'/movies'"
-    [queryParams]="{ genre: genre.id }"
+    *ngFor="let genre of updatedGenres"
+    [routerLink]="genre.url"
+    [queryParams]="genre.queryParams"
     class="movie-details__genres-item"
+    [ngClass]="{ active: genre.active }"
     >{{ genre.name }}</a
   >
 </div>
