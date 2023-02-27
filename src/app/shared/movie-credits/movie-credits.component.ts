@@ -13,9 +13,4 @@ export class MovieCreditsComponent {
   castLink: string = 'View all ';
   baseImageUrl: string = `${environment.baseImageUrl}w300/`;
   profileUrl: string = '../../../assets/images/user.jpg';
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    console.log(this.credits);
-  }
 }
