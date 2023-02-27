@@ -1,3 +1,45 @@
-<div class="movie-list">
-  <h3 class="movie-list__title" *ngIf="fromSearch">{{ searchTitle }}</h3>
-</div>
+<ng-container *ngIf="{ isMobile: isMobile$ | async } as data">
+  <div class="movie-list">
+    <div class="movie-list__container" [ngClass]="{ search: fromSearch }">
+      <div class="movie-list__container-left" *ngIf="!fromSearch">
+        <h4
+          class="movie-list__container-left__title"
+          (click)="expandGenres(data.isMobile!)"
+        >
+          {{ filterByGenre }}
+          <i
+            [class]="
+              !expand
+                ? 'fas fa-plus animate__animated animate__fadeIn'
+                : 'fas fa-minus animate__animated animate__fadeIn'
+            "
+            *ngIf="data.isMobile"
+          ></i>
+        </h4>
+        <ng-container *ngIf="genres$ | async as genres">
+          <app-movie-genres
+            [hidden]="!(genres != null && expand)"
+            [genres]="genres"
+            [appliedGenres]="appliedGenres"
+            [fromMovieList]="true"
+            (genresNames)="genreNames = $event"
+            class="animate__animated animate__fadeInUp"
+            (click)="expandGenres(data.isMobile!)"
+          ></app-movie-genres>
+        </ng-container>
+      </div>
+      <div class="movie-list__container-right" [ngClass]="{ genres: expand }">
+        <h3 class="movie-list__container-right__title">
+          {{ title }}
+          <span *ngIf="type == 'GENRE'">{{ genreNames }}</span>
+        </h3>
+        <app-infinite-scroll
+          [moviesData]="moviesResults"
+          [type]="type"
+          [query]="query"
+          [genre]="genre"
+        ></app-infinite-scroll>
+      </div>
+    </div>
+  </div>
+</ng-container>
