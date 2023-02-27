@@ -19,6 +19,7 @@ export class MovieDetailsComponent {
   votesText: string = 'Votes: ';
   similarTitle: string = 'You might also be interested';
   director: string = '';
+  videoTrailer: string = 'Trailer';
   constructor(
     private movieRequest: MovieRequestService,
     private activatedRoute: ActivatedRoute,

@@ -5,14 +5,21 @@
     <div class="movie-details">
       <app-movie-info-details [movie]="data.movie"></app-movie-info-details>
       <div class="movie-details__top">
-        <img [src]="posterUrl" [alt]="data.movie.original_title" />
-
+        <img [src]="posterUrl" [alt]="data?.movie?.original_title" />
+        <h3
+          class="movie-details__top__video-title"
+          *ngIf="data.isMobile && data.movie.videos.results.length > 0"
+        >
+          {{ videoTrailer }}
+          <i class="fas fa-film"></i>
+        </h3>
         <div
           class="movie-details__top-video"
-          [ngClass]="{ 'no-video': data.movie.videos.results.length == 0 }"
+          [ngClass]="{ 'no-video': data?.movie?.videos?.results?.length == 0 }"
         >
           <app-movie-video
             [movie]="data.movie"
+            [isMobile]="data.isMobile!"
             *ngIf="data.movie.videos.results.length > 0"
           ></app-movie-video>
         </div>
