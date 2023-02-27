@@ -6,6 +6,7 @@ import { UpcomingMoviesRoutingModule } from './upcoming-movies-routing.module';
 import { MovieModule } from '../../shared/movie/movie.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SpinnerWithBackdropModule } from '../../shared/spinner-with-backdrop/spinner-with-backdrop.module';
+import { CustomInfiniteScrollModule } from '../../shared/infinite-scroll/infinite-scroll.module';
 
 @NgModule({
   declarations: [UpcomingMoviesComponent],
@@ -15,6 +16,7 @@ import { SpinnerWithBackdropModule } from '../../shared/spinner-with-backdrop/sp
     MovieModule,
     InfiniteScrollModule,
     SpinnerWithBackdropModule,
+    CustomInfiniteScrollModule,
   ],
 })
 export class UpcomingMoviesModule {}
