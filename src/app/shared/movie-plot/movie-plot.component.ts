@@ -12,7 +12,10 @@ export class MoviePlotComponent {
   directorText: string = 'Director: ';
   tagLine: string = 'Tagline: ';
   directorName: string | null = null;
-
+  runtime: string = 'Runtime: ';
+  minutes: string = ' minutes';
+  budget: string = 'Budget:';
+  spokenLanguages: string = 'Spoken languages:';
   ngOnInit(): void {
     this.initializeDirectorName();
   }

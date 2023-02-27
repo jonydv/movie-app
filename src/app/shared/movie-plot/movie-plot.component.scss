@@ -15,8 +15,7 @@
     color: $text;
     line-height: 1.5rem;
   }
-  &-director,
-  &-tagline {
+  &-common {
     display: flex;
     column-gap: 0.5rem;
     padding: 1rem 0;
@@ -25,6 +24,7 @@
     &-value {
       font-size: $font-text;
       color: $text;
+      line-height: 1.5rem;
     }
   }
 }
