@@ -1,3 +1,4 @@
+@import "src/styles/mixins/media-querys.scss";
 .movie {
   max-width: 100%;
   max-height: 100%;
@@ -12,6 +13,9 @@
       object-fit: fill;
       max-height: 390px;
       border-radius: 5px;
+      @include mobile {
+        min-height: 274px;
+      }
     }
   }
 }
