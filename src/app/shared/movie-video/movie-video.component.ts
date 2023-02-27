@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MovieVideoComponent implements OnInit, OnChanges {
   @Input() movie: MovieDetail | null = null;
+  @Input() isMobile: boolean = false;
   videoUrl: string = '';
   backdropUrl: string = '';
   playVideo: boolean = false;
@@ -24,7 +25,9 @@ export class MovieVideoComponent implements OnInit, OnChanges {
   }
   initializeVideo() {
     this.playVideo = false;
-    this.backdropUrl = `${environment.baseImageUrl}w500/${this.movie?.backdrop_path}`;
+    this.backdropUrl = `${environment.baseImageUrl}${
+      this.isMobile ? 'w500' : 'original'
+    }/${this.movie?.backdrop_path}`;
     let videoTrailer =
       this.movie?.videos?.results?.filter(
         (video) => video?.type == 'Trailer' || video?.type == 'Teaser'
