@@ -1,6 +1,6 @@
 <div class="movie-details__genres" *ngIf="genres">
   <a
-    *ngFor="let genre of updatedGenres"
+    *ngFor="let genre of fromMovieList ? updatedGenres : genres"
     [routerLink]="genre.url"
     [queryParams]="genre.queryParams"
     class="movie-details__genres-item"
