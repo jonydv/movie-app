@@ -9,6 +9,7 @@
 <div class="movies-grid">
   <div class="movies-grid__poster">
     <img
+      *ngIf="movies?.[posterIndex]?.original_title"
       [src]="moviePosterBaseUrl"
       [alt]="movies[posterIndex].original_title"
       [routerLink]="'/movie/' + movies[posterIndex].id"
@@ -19,7 +20,7 @@
     <img
       *ngFor="let poster of posters; index as i"
       [src]="poster"
-      [alt]="movies[i].original_title"
+      [alt]="movies?.[i]?.original_title || ''"
       [routerLink]="'/movie/' + ids[i]"
       class="movies-grid__backdrops-img"
       [ngClass]="{ 'no-poster': movies[i].poster_path == null }"
