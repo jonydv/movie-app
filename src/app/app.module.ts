@@ -8,6 +8,7 @@ import { HeaderModule } from './shared/header/header.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerWithBackdropModule } from './shared/spinner-with-backdrop/spinner-with-backdrop.module';
 import { InterceptorsModule } from './interceptors/interceptors.module';
+import { FooterModule } from './shared/footer/footer.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { InterceptorsModule } from './interceptors/interceptors.module';
     HeaderModule,
     HttpClientModule,
     SpinnerWithBackdropModule,
+    FooterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

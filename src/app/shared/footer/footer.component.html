@@ -1,1 +1,22 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="footer__container">
+    <div class="footer__logo">
+      <app-site-logo></app-site-logo>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__bottom-container">
+      <a
+        class="footer__bottom-container-text"
+        [href]="developerUrl"
+        target="_blank"
+      >
+        {{ footerText }}&reg; {{ developer }}
+      </a>
+    </div>
+    <button class="footer__bottom-button" type="button" (click)="scrollToTop()">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+  </div>
+</footer>
