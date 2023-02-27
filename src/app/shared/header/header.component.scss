@@ -44,11 +44,18 @@ header {
           height: 100%;
           padding: 0.85rem;
           font-weight: 500;
+          i {
+            display: none;
+          }
           &.active {
             color: $primary;
             border: 1px solid $primary;
-            border-radius: 5px;
+            border-radius: 25px;
             font-weight: bold;
+            i {
+              display: inline-block;
+              margin-right: 0.25rem;
+            }
             &:hover {
               background: $primary-hover;
             }
@@ -115,16 +122,23 @@ header {
       padding: 1rem;
       font-weight: 500;
       width: 100%;
+      i {
+        display: none;
+      }
       &.active {
         color: $primary;
         padding: 0.825rem;
         border: 1px solid $primary;
-        border-radius: 0.5rem;
+        border-radius: 25px;
         cursor: pointer;
         text-align: center;
         margin: 0.5rem;
         width: calc(100% - 1rem);
         font-weight: bold;
+        i {
+          display: inline-block;
+          margin-right: 0.25rem;
+        }
       }
       &-button {
         border: 1px solid $primary;

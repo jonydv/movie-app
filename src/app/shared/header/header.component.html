@@ -16,9 +16,10 @@
             <a
               [routerLink]="item?.link"
               routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLinkActiveOptions]="activeLinkOptions"
               class="header-container__nav__links-item"
             >
+              <i class="fa-solid fa-clapperboard"></i>
               {{ item.title }}
             </a>
           </ng-container>
@@ -38,9 +39,10 @@
             <a
               [routerLink]="item?.link"
               routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLinkActiveOptions]="activeLinkOptions"
               class="header-container__mobile__nav__links-item"
             >
+              <i class="fa-solid fa-clapperboard"></i>
               {{ item.title }}
             </a>
           </ng-container>

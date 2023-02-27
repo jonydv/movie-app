@@ -3,6 +3,7 @@ import { BreakpointService } from 'src/app/services/breakpoint.service';
 import { ScrollLockService } from 'src/app/services/scroll-lock.service';
 import { Observable } from 'rxjs';
 import { Header } from '../interfaces/header.interface';
+import { IsActiveMatchOptions } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,12 @@ export class HeaderComponent {
 
     { title: 'Upcoming', link: '/upcoming' },
   ];
+  readonly activeLinkOptions: IsActiveMatchOptions = {
+    queryParams: 'subset',
+    matrixParams: 'exact',
+    paths: 'exact',
+    fragment: 'exact',
+  };
   constructor(
     private breakpointService: BreakpointService,
     private scrollLockService: ScrollLockService
