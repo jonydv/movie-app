@@ -29,7 +29,7 @@ export class MovieInfoDetailsComponent implements OnInit {
     this.noRating = this.movie?.vote_count == 0;
     this.runtimeDetails = `Runtime ${this.movie?.runtime} min`;
     this.releaseText = `Release: ${this.movie?.release_date}`;
-    this.ratingDetails = `${this.movie?.vote_average} ${
+    this.ratingDetails = `${this.movie?.vote_average.toFixed(2)} ${
       this.movie?.vote_count
         ? ' / ' + this.votesText + this.movie.vote_count
         : ''
