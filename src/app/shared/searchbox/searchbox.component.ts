@@ -9,11 +9,11 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
-  combineLatest,
   debounceTime,
   switchMap,
   Observable,
   filter,
+  distinctUntilChanged,
 } from 'rxjs';
 import { MovieRequestService } from '../../services/movie-request.service';
 import { MoviesData } from '../../interfaces/movie-data.interface';
@@ -44,9 +44,9 @@ export class SearchboxComponent implements OnInit {
     this.results$ = this.query.valueChanges
       .pipe(
         debounceTime(400),
+        distinctUntilChanged(),
         filter((query) => query.length > 2),
         switchMap((query: string) => {
-          console.log(query);
           return this.movieRequest.getSearchResult(query.trim());
         })
       )
@@ -60,11 +60,14 @@ export class SearchboxComponent implements OnInit {
   }
 
   submitSearch() {
-    if (this.query.value.length < 2) {
+    if (this.query.value.trim().length < 2) {
       return;
     }
-    this.router.navigateByUrl(`/movies?query=${this.query.value}`);
+    this.router.navigateByUrl(
+      `/movies?query=${this.query.value.trim().toLowerCase()}`
+    );
     this.resetSearch();
+    this.closeSearch();
   }
 
   resetSearch() {
