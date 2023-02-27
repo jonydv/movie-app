@@ -28,7 +28,7 @@ export class MovieDetailsComponent {
       tap((movie) => {
         this.posterUrl =
           movie.poster_path != null
-            ? `${environment.baseImageUrl}w300/${movie.poster_path}`
+            ? `${environment.baseImageUrl}w500/${movie.poster_path}`
             : '../../../assets/images/no-poster.jpg';
         window.scrollTo(0, 0);
       })
