@@ -66,7 +66,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
       case !!params['query']:
         this.query = params['query'];
         this.fromSearch = true;
-        this.title = `Search results for: ${this.query}`;
+        this.title = `Search results for: `;
         this.type = movieRequestType.search;
         this.moviesResults = results;
         this.appliedGenres = '';
@@ -76,7 +76,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
         this.fromSearch = false;
         this.type = movieRequestType.genre;
         this.appliedGenres = params['genre'];
-        this.title = `Results for: `;
+        this.title = `Filtered by: `;
         return;
       default:
         this.fromSearch = false;
