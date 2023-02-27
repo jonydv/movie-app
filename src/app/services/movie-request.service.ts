@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { MoviesData } from '../interfaces/movie-data.interface';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, share } from 'rxjs';
 import { MovieDetail } from '../interfaces/movie-detail.interface';
 import { SearchResultsPageService } from './search-results-page.service';
+import { movieRequestType } from '../constants/movie-request-type';
 
 @Injectable({
   providedIn: 'root',
@@ -45,15 +46,42 @@ export class MovieRequestService {
     const url: string = `${environment.baseUrl}/movie/${id}?${environment.language}&region=US&append_to_response=videos,recommendations,credits,reviews`;
     return this.http.get<MovieDetail>(url);
   }
-  getSearchResult(query: string): Observable<MoviesData> {
-    const url: string = `${environment.baseUrl}/search/movie?query=${query}`;
+  getSearchResult(query: string, page: number = 1): Observable<MoviesData> {
+    const url: string = `${environment.baseUrl}/search/movie?query=${query}&page=${page}`;
     return this.http.get<MoviesData>(url).pipe(
       tap((data) => this.searchResults.setSearchResults(data)),
-      tap(console.log)
+      share()
     );
+  }
+
+  getMoviesByGenre(genreId: string, page: number = 1) {
+    const url: string = `${environment.baseUrl}discover/movie?${environment.language}&region=US&sort_by=popularity.desc&page=${page}&with_genres=${genreId}`;
+    return this.http.get<MoviesData>(url);
   }
 
   convertMonthToString(month: number): string {
     return (month + 1).toString().padStart(2, '0');
+  }
+
+  getMovies(
+    type: string,
+    page: number = 1,
+    query: string = '',
+    genre: string = ''
+  ): Observable<MoviesData> | null {
+    switch (type) {
+      case (type = movieRequestType.search):
+        return this.getSearchResult(query, page);
+      case (type = movieRequestType.upcoming):
+        return this.getUpcoming(page);
+      case (type = movieRequestType.nowPlaying):
+        return this.getNowPlaying(page);
+      case (type = movieRequestType.topRated):
+        return this.getTopRatedMovies(page);
+      case (type = movieRequestType.genre):
+        return this.getMoviesByGenre(genre, page);
+      default:
+        return null;
+    }
   }
 }
