@@ -1,0 +1,47 @@
+@import "src/styles/variables/variables.scss";
+@import "src/styles/mixins/media-querys.scss";
+
+.not-found {
+  max-width: $max-width;
+  height: 50vh;
+  width: 100%;
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    color: $primary;
+    font-size: $font-title;
+    text-align: center;
+    cursor: default;
+    @include mobile {
+      font-size: $font-title-mobile;
+    }
+  }
+  &__paragraph {
+    font-size: $font-info;
+    line-height: 1.5rem;
+    color: $text;
+    margin: 1.5rem auto;
+    text-align: center;
+    cursor: default;
+  }
+  img {
+    margin: 1.25rem auto;
+    max-width: 250px;
+    cursor: default;
+  }
+  &__link {
+    margin: 0 auto;
+    text-align: center;
+    padding: 1.5rem;
+    border: 1px solid $primary;
+    color: $primary;
+    font-size: $nav-text;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 500;
+    &:hover {
+      background: $primary-hover;
+    }
+  }
+}
