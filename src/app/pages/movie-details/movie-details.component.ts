@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieRequestService } from '../../services/movie-request.service';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, tap, map } from 'rxjs';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { MovieDetail } from 'src/app/interfaces/movie-detail.interface';
 import { environment } from '../../../environments/environment';
@@ -21,21 +20,17 @@ export class MovieDetailsComponent {
   director: string = '';
   videoTrailer: string = 'Trailer';
   constructor(
-    private movieRequest: MovieRequestService,
     private activatedRoute: ActivatedRoute,
     private breakpointService: BreakpointService
   ) {
-    this.movie$ = this.activatedRoute.params.pipe(
-      switchMap((params) => {
-        return this.movieRequest.getMovieDetails(params['id']).pipe(
-          tap((movie) => {
-            this.posterUrl =
-              movie.poster_path != null
-                ? `${environment.baseImageUrl}w300/${movie.poster_path}`
-                : '../../../assets/images/no-poster.jpg';
-            window.scrollTo(0, 0);
-          })
-        );
+    this.movie$ = this.activatedRoute.data.pipe(
+      map((movie) => movie['data']),
+      tap((movie) => {
+        this.posterUrl =
+          movie.poster_path != null
+            ? `${environment.baseImageUrl}w300/${movie.poster_path}`
+            : '../../../assets/images/no-poster.jpg';
+        window.scrollTo(0, 0);
       })
     );
   }
