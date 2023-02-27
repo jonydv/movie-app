@@ -6,7 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Movie App Homepage',
+    title: 'Homepage | JDVM',
+    data: {
+      title: 'Homepage | JDVM',
+    },
   },
 ];
 
