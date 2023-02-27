@@ -1,19 +1,5 @@
 <div class="upcoming-movies">
-  <h3 class="upcoming-movies__title">Upcoming movies</h3>
+  <h3 class="upcoming-movies__title">{{ upcomingTitle }}</h3>
 
-  <div
-    class="upcoming-movies__container"
-    infinite-scroll
-    [infiniteScrollDistance]="distance"
-    [infiniteScrollThrottle]="throttle"
-    (scrolled)="onScroll()"
-  >
-    <app-movie
-      *ngFor="let movie of movies$ | async"
-      [movie]="movie"
-    ></app-movie>
-  </div>
-  <div class="upcoming-movies__loading" *ngIf="loading">
-    <app-spinner></app-spinner>
-  </div>
+  <app-infinite-scroll [type]="type"></app-infinite-scroll>
 </div>
