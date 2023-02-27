@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { of, Observable, map, tap } from 'rxjs';
 import { MovieRequestService } from '../../services/movie-request.service';
 import { BreakpointService } from '../../services/breakpoint.service';
@@ -9,7 +9,7 @@ import { Movie } from '../../interfaces/movie-data.interface';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   isMobile$: Observable<boolean> = this.breakpointService.isMobile();
   topRatedTotalPages: number = 500;
   requestTopRatedPage: number =
@@ -41,4 +41,8 @@ export class HomeComponent {
     private movieRequestService: MovieRequestService,
     private breakpointService: BreakpointService
   ) {}
+
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
 }
