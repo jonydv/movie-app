@@ -1,4 +1,5 @@
 import { MoviesData } from './movie-data.interface';
+import { Params } from '@angular/router';
 export interface MovieDetail {
   adult: boolean;
   backdrop_path: string;
@@ -35,6 +36,9 @@ export interface MovieDetail {
 export interface Genre {
   id: number;
   name: string;
+  active?: boolean;
+  url?: string;
+  queryParams?: Params;
 }
 
 export enum OriginalLanguage {
