@@ -1,11 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
-import { takeUntil } from 'rxjs/operators';
-import { ReplaySubject, Subject } from 'rxjs';
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
 import { Movie } from 'src/app/interfaces/movie-data.interface';
-import { environment } from 'src/environments/environment';
 import { MovieRequestService } from 'src/app/services/movie-request.service';
 import { MoviesData } from '../../interfaces/movie-data.interface';
+import { movieRequestType } from '../../constants/movie-request-type';
 
 @Component({
   selector: 'app-infinite-scroll',
@@ -14,8 +12,11 @@ import { MoviesData } from '../../interfaces/movie-data.interface';
 })
 export class InfiniteScrollComponent {
   @Input() url: string = '';
-  @Input() movies: Movie[] = [];
   @Input() moviesData: MoviesData | null = null;
+  @Input() movies: Movie[] = [];
+  @Input() type: string = '';
+  @Input() query: string = '';
+  @Input() genre: string = '';
   movies$: ReplaySubject<Movie[]> = new ReplaySubject<Movie[]>();
   initialPage: number = 1;
   totalPages: number = 1;
@@ -23,8 +24,10 @@ export class InfiniteScrollComponent {
   distance: number = 3;
   throttle: number = 1000;
   loading: boolean = false;
+  moviesChanged: MoviesData | null = null;
+  constructor(private movieRequest: MovieRequestService) {}
 
-  constructor(private movieRequest: MovieRequestService) {
+  ngOnInit(): void {
     if (this.moviesData == null) {
       this.fetchMovieData(this.initialPage);
     } else {
@@ -32,6 +35,38 @@ export class InfiniteScrollComponent {
     }
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['moviesData']?.currentValue) {
+      this.moviesChanged = changes['moviesData']?.currentValue;
+      this.initialPage = 1;
+      this.movies = [];
+      this.setComponentData(this.moviesChanged!);
+    }
+    if (
+      changes['query']?.currentValue &&
+      !changes['query']?.firstChange &&
+      !changes['moviesData']?.currentValue
+    ) {
+      this.initialPage = 1;
+      this.movies = [];
+      this.setComponentData(this.moviesChanged!);
+    }
+    if (changes['genre']?.currentValue && !changes['genre']?.firstChange) {
+      this.initialPage = 1;
+      this.movies = [];
+      this.fetchMovieData(this.initialPage);
+    }
+    if (
+      changes['type']?.currentValue &&
+      !changes['type']?.firstChange &&
+      !changes['genre']?.currentValue &&
+      changes['type']?.currentValue !== movieRequestType.search
+    ) {
+      this.initialPage = 1;
+      this.movies = [];
+      this.fetchMovieData(this.initialPage);
+    }
+  }
   onScroll() {
     if (this.initialPage < this.totalPages && !this.loading) {
       this.loading = true;
@@ -41,20 +76,24 @@ export class InfiniteScrollComponent {
   }
 
   fetchMovieData(page: number) {
-    this.movieRequest.getUpcoming(page).subscribe((data) => {
-      this.setComponentData(data);
-    });
+    this.movieRequest
+      .getMovies(this.type, page, this.query, this.genre)!
+      .subscribe((data) => {
+        this.setComponentData(data);
+      });
   }
 
   setComponentData(data: MoviesData) {
-    this.totalPages = data.total_pages;
-    this.totalResults = data.total_results;
+    this.totalPages = data?.total_pages;
+    this.totalResults = data?.total_results;
     this.movies = [
       ...this.movies,
-      ...data.results.filter((movie) => movie.poster_path != null),
+      ...data?.results?.filter((movie) => movie?.poster_path != null),
     ];
     this.movies$.next(this.movies);
     this.loading = false;
   }
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.movies$.next([]);
+  }
 }

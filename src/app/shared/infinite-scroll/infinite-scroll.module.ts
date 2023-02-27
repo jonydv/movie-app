@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfiniteScrollComponent } from './infinite-scroll.component';
-import {
-  CdkScrollableModule,
-  ScrollingModule,
-  ScrollDispatcher,
-} from '@angular/cdk/scrolling';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MovieModule } from '../movie/movie.module';
 
 @NgModule({
   declarations: [InfiniteScrollComponent],
-  imports: [CommonModule, ScrollingModule, CdkScrollableModule],
+  imports: [CommonModule, MovieModule, InfiniteScrollModule],
   exports: [InfiniteScrollComponent],
-  providers: [{ provide: ScrollDispatcher }],
 })
-export class InfiniteScrollModule {}
+export class CustomInfiniteScrollModule {}

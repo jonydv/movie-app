@@ -1,1 +1,9 @@
-<div class="list"></div>
+<div
+  class="list"
+  infinite-scroll
+  [infiniteScrollDistance]="distance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScroll()"
+>
+  <app-movie *ngFor="let movie of movies$ | async" [movie]="movie"></app-movie>
+</div>
