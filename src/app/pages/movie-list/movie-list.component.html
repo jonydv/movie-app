@@ -22,6 +22,7 @@
             [genres]="genres"
             [appliedGenres]="appliedGenres"
             [fromMovieList]="true"
+            [fromTopRated]="fromTopRated"
             (genresNames)="genreNames = $event"
             class="animate__animated animate__fadeInUp"
             (click)="expandGenres(data.isMobile!)"
@@ -39,6 +40,7 @@
           [type]="type"
           [query]="query"
           [genre]="genre"
+          [fromTopRated]="fromTopRated"
         ></app-infinite-scroll>
       </div>
     </div>

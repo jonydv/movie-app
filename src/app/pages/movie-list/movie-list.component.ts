@@ -33,6 +33,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   filterByGenre: string = 'Filter by genre';
   expand: boolean = false;
   genreNames: string = '';
+  fromTopRated: boolean = false;
   isMobile$: Observable<boolean> = this.breakpointService.isMobile().pipe(
     tap((isMobile) => {
       this.expand = isMobile ? false : true;
@@ -62,6 +63,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   switchRequestByQueryParams(params: Params, results: MoviesData) {
+    this.fromTopRated = false;
     switch (!!params) {
       case !!params['query']:
         this.query = params['query'];
@@ -71,12 +73,20 @@ export class MovieListComponent implements OnInit, OnDestroy {
         this.moviesResults = results;
         this.appliedGenres = '';
         return;
-      case !!params['genre']:
+      case !!params['genre'] && !!!params['toprated']:
         this.genre = params['genre'];
         this.fromSearch = false;
         this.type = movieRequestType.genre;
         this.appliedGenres = params['genre'];
         this.title = `Filtered by: `;
+        return;
+      case !!params['toprated']:
+        this.fromTopRated = true;
+        this.genre = !!params['genre'] ? params['genre'] : '';
+        this.fromSearch = false;
+        this.type = movieRequestType.topRated;
+        this.appliedGenres = !!params['genre'] ? params['genre'] : '';
+        this.title = `Top Rated Movies`;
         return;
       default:
         this.fromSearch = false;

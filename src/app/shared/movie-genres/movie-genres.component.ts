@@ -16,6 +16,7 @@ export class MovieGenresComponent {
   @Input() genres: Genre[] | null = null;
   @Input() appliedGenres: string = '';
   @Input() fromMovieList: boolean = false;
+  @Input() fromTopRated: boolean = false;
   @Output() genresNames: EventEmitter<string> = new EventEmitter<string>();
   updatedGenres: Genre[] | null = null;
   Ids: string[] = [];
@@ -34,6 +35,9 @@ export class MovieGenresComponent {
       this.fromMovieList
     ) {
       this.appliedGenres = changes['appliedGenres']?.currentValue;
+      this.applied();
+    }
+    if (changes['fromTopRated'] && !changes['fromTopRated']?.firstChange) {
       this.applied();
     }
   }
@@ -65,7 +69,11 @@ export class MovieGenresComponent {
       // Create query parameters object based on updated selected IDs array
       const queryParams =
         updatedSelectedIds.length > 0
-          ? { genre: updatedSelectedIds.join(',') }
+          ? this.fromTopRated
+            ? { toprated: true, genre: updatedSelectedIds.join(',') }
+            : { genre: updatedSelectedIds.join(',') }
+          : this.fromTopRated
+          ? { toprated: true }
           : {};
 
       // Set URL for genre link

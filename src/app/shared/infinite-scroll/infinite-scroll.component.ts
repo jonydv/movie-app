@@ -17,6 +17,7 @@ export class InfiniteScrollComponent {
   @Input() type: string = '';
   @Input() query: string = '';
   @Input() genre: string = '';
+  @Input() fromTopRated: boolean = false;
   movies$: ReplaySubject<Movie[]> = new ReplaySubject<Movie[]>();
   initialPage: number = 1;
   totalPages: number = 1;
@@ -54,7 +55,10 @@ export class InfiniteScrollComponent {
       this.setComponentData(this.moviesChanged!);
       window.scrollTo(0, 0);
     }
-    if (changes['genre']?.currentValue && !changes['genre']?.firstChange) {
+    if (
+      (changes['genre']?.currentValue && !changes['genre']?.firstChange) ||
+      (changes['genre'] && !changes['genre']?.firstChange && this.fromTopRated)
+    ) {
       this.initialPage = 1;
       this.movies = [];
       this.fetchMovieData(this.initialPage);
