@@ -25,6 +25,7 @@ export class InfiniteScrollComponent {
   throttle: number = 1000;
   loading: boolean = false;
   moviesChanged: MoviesData | null = null;
+  notFound: string = 'We did not find movies, continue exploring the site...';
   constructor(private movieRequest: MovieRequestService) {}
 
   ngOnInit(): void {

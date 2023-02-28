@@ -10,4 +10,21 @@
   @include mobile {
     grid-template-columns: repeat(2, 1fr);
   }
+  &__not-found {
+    height: 25vh;
+    width: 100%;
+    margin: 1rem auto;
+    grid-column: 1 / span 4;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    @include mobile {
+      grid-column: 1 / span 2;
+    }
+    &-text {
+      font-size: $font-info;
+      color: $text;
+      line-height: 1.5rem;
+    }
+  }
 }

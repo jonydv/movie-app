@@ -5,5 +5,10 @@
   [infiniteScrollThrottle]="throttle"
   (scrolled)="onScroll()"
 >
-  <app-movie *ngFor="let movie of movies$ | async" [movie]="movie"></app-movie>
+  <ng-container *ngIf="{ movies: movies$ | async } as data">
+    <div class="list__not-found" *ngIf="data.movies?.length == 0">
+      <p class="list__not-found-text">{{ notFound }}</p>
+    </div>
+    <app-movie *ngFor="let movie of data.movies" [movie]="movie"></app-movie>
+  </ng-container>
 </div>
