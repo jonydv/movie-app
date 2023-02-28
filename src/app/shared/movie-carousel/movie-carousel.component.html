@@ -4,8 +4,8 @@
       <swiper
         [config]="swiperConfig"
         [navigation]="{
-          nextEl: '.right',
-          prevEl: '.left'
+          nextEl: '.right-hero',
+          prevEl: '.left-hero'
         }"
         [autoplay]="{ delay: 5000 }"
         [loop]="true"
@@ -39,10 +39,10 @@
           </ng-template>
         </ng-container>
       </swiper>
-      <button class="left">
+      <button class="left-hero">
         <i class="fas fa-chevron-left"></i>
       </button>
-      <button class="right">
+      <button class="right-hero">
         <i class="fas fa-chevron-right"></i>
       </button>
     </div>
