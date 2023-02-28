@@ -1,19 +1,11 @@
 @import "src/styles/variables/variables.scss";
 @import "src/styles/mixins/media-querys.scss";
-:host {
-  @include mobile {
-    margin-bottom: 1rem;
-    display: block;
-  }
-}
 .movies-grid {
   display: grid;
   width: 100%;
-  height: 50vh;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   @include mobile {
-    height: 25vh;
     gap: 0.5rem;
     grid-template-columns: 1fr;
   }
