@@ -30,12 +30,20 @@
     *ngIf="movie.spoken_languages.length"
   >
     <p class="movie-details__overview-common-key">{{ spokenLanguages }}</p>
-    <p
-      class="movie-details__overview-common-value"
-      *ngFor="let lang of movie.spoken_languages; index as i"
-    >
-      {{ lang.english_name }}
-      <span *ngIf="i < movie.spoken_languages.length - 1">-</span>
+    <div class="movie-details__overview-common-language">
+      <p
+        class="movie-details__overview-common-value"
+        *ngFor="let lang of movie.spoken_languages; index as i"
+      >
+        {{ lang.english_name }}
+        <span *ngIf="i < movie.spoken_languages.length - 1">-</span>
+      </p>
+    </div>
+  </div>
+  <div class="movie-details__overview-common" *ngIf="movie.status">
+    <p class="movie-details__overview-common-key">{{ status }}</p>
+    <p class="movie-details__overview-common-value">
+      {{ movie.status }}
     </p>
   </div>
 </div>

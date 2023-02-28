@@ -16,6 +16,7 @@ export class MoviePlotComponent {
   minutes: string = ' minutes';
   budget: string = 'Budget:';
   spokenLanguages: string = 'Spoken languages:';
+  status: string = 'Status: ';
   ngOnInit(): void {
     this.initializeDirectorName();
   }
