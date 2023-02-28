@@ -7,16 +7,26 @@
   ></a>
 </div>
 <div class="movies-grid">
-  <div class="movies-grid__poster">
+  <div class="movies-grid__poster" [ngClass]="{ mobile: isMobile }">
     <img
-      *ngIf="movies?.[posterIndex]?.original_title"
+      *ngIf="movies[posterIndex].title"
       [src]="moviePosterBaseUrl"
-      [alt]="movies[posterIndex].original_title"
+      [alt]="movies[posterIndex].title"
       [routerLink]="'/movie/' + movies[posterIndex].id"
       [ngClass]="{ 'no-poster': movies[posterIndex].poster_path == null }"
     />
+    <ng-container *ngIf="isMobile">
+      <img
+        *ngFor="let poster of posters; index as i"
+        [src]="poster"
+        [alt]="movies[i].original_title"
+        [routerLink]="'/movie/' + ids[i]"
+        class="movies-grid__backdrops-img"
+        [ngClass]="{ 'no-poster': movies[i].poster_path == null }"
+      />
+    </ng-container>
   </div>
-  <div class="movies-grid__backdrops">
+  <div class="movies-grid__backdrops" *ngIf="!isMobile">
     <img
       *ngFor="let poster of posters; index as i"
       [src]="poster"
