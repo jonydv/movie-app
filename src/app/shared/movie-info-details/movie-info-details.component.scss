@@ -11,6 +11,14 @@
       justify-content: unset;
       row-gap: 0.75rem;
     }
+    &.list {
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: start;
+      @include mobile {
+        row-gap: 0;
+      }
+    }
     &__summary {
       &-title {
         font-size: $font-title;
@@ -18,12 +26,26 @@
         @include mobile {
           font-size: $font-title-mobile;
         }
+        &.list {
+          font-size: $font-info;
+          max-height: 18px;
+          height: 18px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          line-break: anywhere;
+        }
       }
 
       &__details {
         margin-top: 0.75rem;
         display: flex;
         column-gap: 0.75rem;
+        &.list {
+          margin-top: 0.5rem;
+        }
         &-date,
         &-runtime {
           color: $secondary;
@@ -38,14 +60,25 @@
           align-items: center;
           column-gap: 0.75rem;
         }
+        &.list {
+          display: flex;
+          align-items: center;
+          margin-top: 0.5rem;
+        }
         &-title {
           font-size: $font-subtitle;
           @include mobile {
             font-size: $font-subtitle-mobile;
           }
+          &.list {
+            font-size: $nav-text;
+          }
         }
         &__box {
           margin-top: 0.75rem;
+          &.list {
+            margin-top: 0;
+          }
           i {
             color: $primary;
           }

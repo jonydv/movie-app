@@ -1,24 +1,43 @@
-<div class="movie-details__info" *ngIf="movie">
+<div class="movie-details__info" *ngIf="movie" [ngClass]="{ list: fromList }">
   <div class="movie-details__info__summary">
-    <h1 class="movie-details__info__summary-title">
+    <h1
+      class="movie-details__info__summary-title"
+      [ngClass]="{ list: fromList }"
+    >
       {{ movie.original_title }}
     </h1>
-    <div class="movie-details__info__summary__details">
+    <div
+      class="movie-details__info__summary__details"
+      [ngClass]="{ list: fromList }"
+      *ngIf="!fromList"
+    >
       <p class="movie-details__info__summary__details-date">
         {{ releaseText }}
       </p>
-      <p class="movie-details__info__summary__details-runtime">
+      <p
+        class="movie-details__info__summary__details-runtime"
+        *ngIf="!fromList"
+      >
         {{ runtimeDetails }}
       </p>
     </div>
   </div>
   <div class="movie-details__info__popularity" *ngIf="!noRating">
-    <div class="movie-details__info__popularity__rate">
-      <h2 class="movie-details__info__popularity__rate-title">
+    <div
+      class="movie-details__info__popularity__rate"
+      [ngClass]="{ list: fromList }"
+    >
+      <h2 class="movie-details__info__popularity__rate-title" *ngIf="!fromList">
         {{ ratingText }}
       </h2>
-      <div class="movie-details__info__popularity__rate__box">
-        <p class="movie-details__info__popularity__rate__box-value">
+      <div
+        class="movie-details__info__popularity__rate__box"
+        [ngClass]="{ list: fromList }"
+      >
+        <p
+          class="movie-details__info__popularity__rate__box-value"
+          [ngClass]="{ list: fromList }"
+        >
           <i class="fas fa-star"></i>
           {{ ratingDetails }}
         </p>

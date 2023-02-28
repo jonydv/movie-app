@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Movie } from '../../interfaces/movie-data.interface';
+import { Params } from '@angular/router';
 
 @Component({
   selector: 'app-movies-grid',
@@ -14,7 +15,10 @@ export class MoviesGridComponent implements OnInit {
   @Input() subtitle: string = '';
   @Input() link: string = '';
   @Input() linkTitle: string = '';
-  moviePosterBaseUrl: string = `${environment.baseImageUrl}w500`;
+  @Input() linkQueryParams: Params = {};
+  moviePosterBaseUrl: string = `${environment.baseImageUrl}${
+    this.isMobile ? 'original' : 'w500'
+  }`;
   posters: string[] = ['', '', '', ''];
   ids: string[] | number[] = ['', '', '', ''];
   posterIndex: number = 0;
@@ -28,8 +32,6 @@ export class MoviesGridComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
     if (changes['movies']) {
       this.movies = changes['movies'].currentValue;
       this.setIndexValues();

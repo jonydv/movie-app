@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Movie } from 'src/app/interfaces/movie-data.interface';
 import { MovieDetail } from '../../interfaces/movie-detail.interface';
 
 @Component({
@@ -7,7 +8,8 @@ import { MovieDetail } from '../../interfaces/movie-detail.interface';
   styleUrls: ['./movie-info-details.component.scss'],
 })
 export class MovieInfoDetailsComponent implements OnInit {
-  @Input() movie: MovieDetail | null = null;
+  @Input() movie: MovieDetail | Movie | null = null;
+  @Input() fromList: boolean = false;
   runtimeDetails: string = '';
   ratingText: string = 'Rating';
   votesText: string = 'Votes: ';

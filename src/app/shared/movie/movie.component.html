@@ -2,4 +2,9 @@
   <a [routerLink]="movieDetailUrl" class="movie__link">
     <img [src]="imageUrl" [alt]="movie?.title" />
   </a>
+  <app-movie-info-details
+    *ngIf="fromList"
+    [movie]="movie"
+    [fromList]="fromList"
+  ></app-movie-info-details>
 </div>

@@ -3,6 +3,7 @@ import { Observable, map } from 'rxjs';
 import { MovieRequestService } from '../../services/movie-request.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { Movie, MoviesData } from '../../interfaces/movie-data.interface';
+import { Params } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +35,8 @@ export class HomeComponent implements OnInit {
   upcomingLinkTitle: string = 'See all ';
 
   topRatedTitle: string = 'Top rated movies';
-  topRatedLink: string = '/top-rated';
+  topRatedLink: string = '/movies';
+  topRatedQueryParams: Params = { toprated: true };
   topRatedLinkTitle: string = 'See all ';
   constructor(
     private movieRequestService: MovieRequestService,

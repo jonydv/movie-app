@@ -2,7 +2,11 @@
   <h3 class="movies-grid__info-title">
     {{ title }}
   </h3>
-  <a *ngIf="linkTitle" [routerLink]="link" class="movies-grid__info-link"
+  <a
+    *ngIf="linkTitle"
+    [routerLink]="link"
+    class="movies-grid__info-link"
+    [queryParams]="linkQueryParams"
     >{{ linkTitle }} <i class="fas fa-chevron-right"></i
   ></a>
 </div>

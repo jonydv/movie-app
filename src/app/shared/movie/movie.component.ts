@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class MovieComponent implements OnInit {
   @Input() movie: Movie | null = null;
+  @Input() fromList: boolean = false;
   imageUrl: string = '';
   movieDetailUrl: string = '';
 
