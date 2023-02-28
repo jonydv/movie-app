@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { of, Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { MovieRequestService } from '../../services/movie-request.service';
 import { BreakpointService } from '../../services/breakpoint.service';
-import { Movie } from '../../interfaces/movie-data.interface';
+import { Movie, MoviesData } from '../../interfaces/movie-data.interface';
 
 @Component({
   selector: 'app-home',
@@ -12,23 +12,22 @@ import { Movie } from '../../interfaces/movie-data.interface';
 export class HomeComponent implements OnInit {
   isMobile$: Observable<boolean> = this.breakpointService.isMobile();
   topRatedTotalPages: number = 500;
-  requestTopRatedPage: number =
-    Math.floor(Math.random() * this.topRatedTotalPages) + 1;
+  nowPlayingTotalPages: number = 12;
+  requestTopRatedPage: number = this.aleatoryPageRequest(
+    this.topRatedTotalPages
+  );
+  requestNowPlayingPage: number = this.aleatoryPageRequest(
+    this.nowPlayingTotalPages
+  );
   nowPlayingMovies$: Observable<Movie[]> = this.movieRequestService
-    .getNowPlaying()
-    .pipe(
-      map((data) => data.results.filter((movie) => movie.poster_path != null))
-    );
+    .getNowPlaying(this.requestNowPlayingPage)
+    .pipe(map((data) => this.filterMoviesWithoutPosterPath(data, true)));
   upcomingMovies$: Observable<Movie[]> = this.movieRequestService
     .getUpcoming()
-    .pipe(
-      map((data) => data.results.filter((movie) => movie.poster_path != null))
-    );
+    .pipe(map((data) => this.filterMoviesWithoutPosterPath(data)));
   topRatedMovies$: Observable<Movie[]> = this.movieRequestService
     .getTopRatedMovies(this.requestTopRatedPage)
-    .pipe(
-      map((data) => data.results.filter((movie) => movie?.poster_path != null))
-    );
+    .pipe(map((data) => this.filterMoviesWithoutPosterPath(data)));
   upcomingTitle: string = 'Upcoming movies';
   upcomingSubtitle: string = 'Latest movies upcoming';
   upcomingLink: string = '/upcoming';
@@ -44,5 +43,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+  }
+
+  aleatoryPageRequest(totalPages: number): number {
+    return Math.floor(Math.random() * totalPages) + 1;
+  }
+
+  filterMoviesWithoutPosterPath(
+    data: MoviesData,
+    filterBackdrop: boolean = false
+  ): Movie[] {
+    return data.results.filter((movie: Movie) =>
+      filterBackdrop ? movie.backdrop_path != null : movie.poster_path != null
+    );
   }
 }
