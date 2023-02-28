@@ -1,7 +1,10 @@
 @import "src/styles/variables/variables.scss";
 @import "src/styles/mixins/media-querys.scss";
 .footer {
-  margin-top: calc(100vh - 190px);
+  margin-top: 42vh;
+  @include mobile {
+    margin-top: 100vh;
+  }
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
