@@ -21,7 +21,7 @@ export class MovieRequestService {
     return this.http.get<MoviesData>(url);
   }
 
-  getUpcoming(page: number = 1): Observable<MoviesData> {
+  discoverMovies(page: number = 1): Observable<MoviesData> {
     let date = new Date(Date.now());
 
     let primaryReleaseDate = `${date.getFullYear()}-${this.convertMonthToString(
@@ -32,13 +32,25 @@ export class MovieRequestService {
     return this.http.get<MoviesData>(url);
   }
 
+  getUpcoming(page: number = 1): Observable<MoviesData> {
+    const url: string = `${environment.baseUrl}/movie/upcoming?${environment.language}&page=${page}&region=US`;
+    return this.http.get<MoviesData>(url);
+  }
+
   getNowPlaying(page: number = 1): Observable<MoviesData> {
     const url: string = `${environment.baseUrl}/movie/now_playing?${environment.language}&page=${page}&region=US`;
     return this.http.get<MoviesData>(url);
   }
 
-  getTopRatedMovies(page: number = 1): Observable<MoviesData> {
-    const url: string = `${environment.baseUrl}/movie/top_rated?${environment.language}&page=${page}&region=US`;
+  getTopRatedMovies(
+    page: number = 1,
+    genres: string = ''
+  ): Observable<MoviesData> {
+    const url: string = `${environment.baseUrl}/movie/top_rated?${
+      environment.language
+    }&page=${page}&region=US${
+      genres.length > 0 ? '&with_genres=' + genres : ''
+    }`;
     return this.http.get<MoviesData>(url);
   }
 
@@ -77,7 +89,7 @@ export class MovieRequestService {
       case (type = movieRequestType.nowPlaying):
         return this.getNowPlaying(page);
       case (type = movieRequestType.topRated):
-        return this.getTopRatedMovies(page);
+        return this.getTopRatedMovies(page, genre);
       case (type = movieRequestType.genre):
         return this.getMoviesByGenre(genre, page);
       default:
