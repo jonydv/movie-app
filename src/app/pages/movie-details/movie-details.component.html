@@ -33,6 +33,7 @@
         *ngIf="data.movie?.recommendations?.results?.length"
         [movies]="data.movie.recommendations.results"
         [title]="similarTitle"
+        [isMobile]="data.isMobile!"
       ></app-movies-grid>
     </div>
   </ng-container>
