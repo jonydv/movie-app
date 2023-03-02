@@ -13,7 +13,7 @@
 <div class="movies-grid">
   <div class="movies-grid__poster" [ngClass]="{ mobile: isMobile }">
     <img
-      *ngIf="movies[posterIndex].title"
+      *ngIf="movies[posterIndex]?.title"
       [src]="moviePosterBaseUrl"
       [alt]="movies[posterIndex].title"
       [routerLink]="'/movie/' + movies[posterIndex].id"

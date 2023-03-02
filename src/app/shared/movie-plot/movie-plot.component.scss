@@ -25,13 +25,31 @@
       font-size: $font-text;
       color: $text;
       line-height: 1.5rem;
+      cursor: default;
       span {
         margin-right: 0.25rem;
+      }
+      &.imdb,
+      &.link {
+        color: $link-color;
+        cursor: pointer;
+        line-break: anywhere;
       }
     }
     &-language {
       display: flex;
       flex-wrap: wrap;
+    }
+    &.imdb {
+      align-items: center;
+    }
+    &__logo {
+      max-width: 60px;
+      margin-left: 0.5rem;
+      img {
+        max-width: 100%;
+        cursor: pointer;
+      }
     }
   }
 }

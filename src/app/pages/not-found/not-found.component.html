@@ -1,6 +1,6 @@
 <div class="not-found">
   <h4 class="not-found__title">{{ title }}</h4>
   <p class="not-found__paragraph">{{ paragraph }}</p>
-  <img [src]="imgUrl" [alt]="imgAlt" />
+  <img [src]="imgUrl" [alt]="imgAlt" loading="lazy" />
   <a class="not-found__link" [routerLink]="link">{{ goHomeText }}</a>
 </div>

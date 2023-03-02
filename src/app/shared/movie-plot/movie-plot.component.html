@@ -46,4 +46,29 @@
       {{ movie.status }}
     </p>
   </div>
+  <div class="movie-details__overview-common" *ngIf="movie.homepage">
+    <p class="movie-details__overview-common-key">{{ officialPage }}</p>
+    <a
+      class="movie-details__overview-common-value link"
+      [href]="movie.homepage"
+      target="_blank"
+    >
+      {{ movie.homepage }}
+    </a>
+  </div>
+  <div class="movie-details__overview-common imdb" *ngIf="movie.imdb_id">
+    <a
+      class="movie-details__overview-common-key imdb"
+      [href]="imdbUrl"
+      target="_blank"
+      >{{ imdbText }}</a
+    >
+    <a
+      [href]="imdbUrl"
+      target="_blank"
+      class="movie-details__overview-common__logo"
+    >
+      <img [src]="imdbLogoUrl" alt="imdb"
+    /></a>
+  </div>
 </div>

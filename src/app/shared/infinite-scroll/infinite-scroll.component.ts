@@ -38,12 +38,21 @@ export class InfiniteScrollComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['moviesData']?.currentValue) {
+    if (
+      changes['moviesData']?.currentValue &&
+      changes['moviesData']?.firstChange
+    ) {
       this.moviesChanged = changes['moviesData']?.currentValue;
       this.initialPage = 1;
       this.movies = [];
       this.setComponentData(this.moviesChanged!);
       window.scrollTo(0, 0);
+    }
+    if (
+      changes['moviesData']?.currentValue &&
+      !changes['moviesData']?.firstChange
+    ) {
+      this.moviesChanged = changes['moviesData']?.currentValue;
     }
     if (
       changes['query']?.currentValue &&

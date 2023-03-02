@@ -8,6 +8,7 @@ import { MovieInfoDetailsModule } from '../../shared/movie-info-details/movie-in
 import { MovieGenresModule } from '../../shared/movie-genres/movie-genres.module';
 import { MoviePlotModule } from '../../shared/movie-plot/movie-plot.module';
 import { MovieCreditsModule } from '../../shared/movie-credits/movie-credits.module';
+import { MovieReviewsModule } from '../../shared/movie-reviews/movie-reviews.module';
 
 @NgModule({
   declarations: [MovieDetailsComponent],
@@ -20,6 +21,7 @@ import { MovieCreditsModule } from '../../shared/movie-credits/movie-credits.mod
     MovieGenresModule,
     MoviePlotModule,
     MovieCreditsModule,
+    MovieReviewsModule,
   ],
 })
 export class MovieDetailsModule {}

@@ -1,11 +1,15 @@
 <ng-container
   *ngIf="{ movie: movie$ | async, isMobile: isMobile$ | async } as data"
 >
-  <ng-container *ngIf="data.movie != null">
+  <ng-container *ngIf="!!data.movie">
     <div class="movie-details">
       <app-movie-info-details [movie]="data.movie"></app-movie-info-details>
       <div class="movie-details__top">
-        <img [src]="posterUrl" [alt]="data?.movie?.original_title" />
+        <img
+          [src]="posterUrl"
+          [alt]="data?.movie?.original_title"
+          loading="lazy"
+        />
         <h3
           class="movie-details__top__video-title"
           *ngIf="data.isMobile && data.movie.videos.results.length > 0"
@@ -20,7 +24,7 @@
           <app-movie-video
             [movie]="data.movie"
             [isMobile]="data.isMobile!"
-            *ngIf="data.movie.videos.results.length > 0"
+            *ngIf="data?.movie?.videos?.results?.length! > 0"
           ></app-movie-video>
         </div>
       </div>
@@ -30,11 +34,15 @@
       <app-movie-plot [movie]="data.movie"></app-movie-plot>
       <app-movie-credits [credits]="data.movie.credits"></app-movie-credits>
       <app-movies-grid
-        *ngIf="data.movie?.recommendations?.results?.length"
-        [movies]="data.movie.recommendations.results"
+        *ngIf="recommendations$ | async as recommendations"
+        [movies]="recommendations.results"
         [title]="similarTitle"
         [isMobile]="data.isMobile!"
       ></app-movies-grid>
+      <app-movie-reviews
+        [reviews]="data.movie.reviews"
+        *ngIf="data?.movie?.reviews?.results?.length"
+      ></app-movie-reviews>
     </div>
   </ng-container>
 </ng-container>

@@ -1,4 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { MovieDetail } from '../../interfaces/movie-detail.interface';
 
 @Component({
@@ -17,6 +18,10 @@ export class MoviePlotComponent {
   budget: string = 'Budget:';
   spokenLanguages: string = 'Spoken languages:';
   status: string = 'Status: ';
+  imdbUrl: string | null = '';
+  imdbLogoUrl: string = '../../../assets/images/imdb-logo.png';
+  imdbText: string = 'View on imdb: ';
+  officialPage: string = 'Official website: ';
   ngOnInit(): void {
     this.initializeDirectorName();
   }
@@ -28,6 +33,7 @@ export class MoviePlotComponent {
     }
   }
   initializeDirectorName() {
+    this.imdbUrl = `${environment.imdbBaseUrl}${this.movie?.imdb_id}`;
     this.directorName =
       this.movie?.credits?.crew.filter((person) => person?.job == 'Director')[0]
         ?.name || null;

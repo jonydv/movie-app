@@ -55,7 +55,7 @@ export class MovieRequestService {
   }
 
   getMovieDetails(id: string): Observable<MovieDetail> {
-    const url: string = `${environment.baseUrl}/movie/${id}?${environment.language}&region=US&append_to_response=videos,recommendations,credits,reviews`;
+    const url: string = `${environment.baseUrl}/movie/${id}?${environment.language}&region=US&append_to_response=videos,credits,reviews`;
     return this.http.get<MovieDetail>(url);
   }
   getSearchResult(query: string, page: number = 1): Observable<MoviesData> {
@@ -66,8 +66,15 @@ export class MovieRequestService {
     );
   }
 
-  getMoviesByGenre(genreId: string, page: number = 1) {
-    const url: string = `${environment.baseUrl}discover/movie?${environment.language}&region=US&sort_by=popularity.desc&page=${page}&with_genres=${genreId}`;
+  getMoviesByGenre(
+    genreId: string,
+    page: number = 1,
+    fromMovieDetails: boolean = false
+  ) {
+    const sortFromMovieDetail: string = fromMovieDetails
+      ? 'primary_release_date.asc,vote_average.desc,popularity.desc'
+      : 'popularity.desc';
+    const url: string = `${environment.baseUrl}discover/movie?${environment.language}&region=US&sort_by=${sortFromMovieDetail}&page=${page}&with_genres=${genreId}`;
     return this.http.get<MoviesData>(url);
   }
 

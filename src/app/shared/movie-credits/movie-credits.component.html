@@ -13,7 +13,12 @@
           [alt]="cast.name"
           *ngIf="cast.profile_path"
         />
-        <img [src]="profileUrl" [alt]="cast.name" *ngIf="!cast.profile_path" />
+        <img
+          [src]="profileUrl"
+          [alt]="cast.name"
+          *ngIf="!cast.profile_path"
+          loading="lazy"
+        />
         <p class="credits__cast-container__item-name">{{ cast.name }}</p>
       </div>
     </div>

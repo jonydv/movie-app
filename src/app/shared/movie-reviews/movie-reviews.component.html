@@ -1,0 +1,52 @@
+<div class="reviews-container" *ngIf="reviews">
+  <h3 class="reviews-container__title">{{ title }}</h3>
+  <div class="reviews-container__item" *ngFor="let review of reviews.results">
+    <div class="reviews-container__item-header">
+      <ng-container *ngIf="review?.author_details?.avatar_path; else noAvatar">
+        <img
+          *ngIf="
+            review?.author_details?.avatar_path?.includes('/https://');
+            else apiImage
+          "
+          [src]="
+            '//' + review.author_details.avatar_path.replace('/https://', '')
+          "
+          [alt]="review?.author_details?.username"
+          class="reviews-container__item-header-img"
+        />
+        <ng-template #apiImage>
+          <img
+            [src]="baseImageUrl + review?.author_details?.avatar_path"
+            [alt]="review?.author_details?.username"
+            class="reviews-container__item-header-img"
+          />
+        </ng-template>
+      </ng-container>
+      <ng-template #noAvatar>
+        <img
+          src="../../../assets/images/user.jpg"
+          [alt]="review?.author_details?.username"
+          class="reviews-container__item-header-img"
+        />
+      </ng-template>
+      <p class="reviews-container__item-header-name">
+        {{ review.author }}
+      </p>
+    </div>
+    <div class="reviews-container__item-rating">
+      <ng-container *ngIf="review?.author_details?.rating">
+        <i
+          *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+          class="fas fa-star"
+          [ngClass]="{ fill: i <= review?.author_details?.rating! }"
+        ></i>
+        <span>{{ review?.author_details?.rating! }}/10</span>
+      </ng-container>
+
+      <p
+        class="reviews-container__item-rating-text"
+        [innerHTML]="review.content | safeHtml"
+      ></p>
+    </div>
+  </div>
+</div>
