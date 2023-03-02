@@ -31,6 +31,7 @@ export interface MovieDetail {
   vote_average: number;
   vote_count: number;
   videos: Videos;
+  ['watch/providers']?: WatchProviders;
 }
 
 export interface Genre {
@@ -128,4 +129,26 @@ export interface AuthorDetails {
   username: string;
   avatar_path: string;
   rating: number | null;
+}
+
+export interface WatchProviders {
+  results: Results;
+}
+
+export interface Results {
+  CA: CA;
+  US: CA;
+}
+
+export interface CA {
+  link: string;
+  buy: Buy[];
+  rent: Buy[];
+}
+
+export interface Buy {
+  logo_path: string;
+  provider_id: number;
+  provider_name: string;
+  display_priority: number;
 }
