@@ -53,6 +53,11 @@ export class InfiniteScrollComponent {
       !changes['moviesData']?.firstChange
     ) {
       this.moviesChanged = changes['moviesData']?.currentValue;
+      if (changes['type']?.currentValue) {
+        this.movies = [];
+        this.initialPage = 1;
+        this.setComponentData(this.moviesChanged!);
+      }
     }
     if (
       changes['query']?.currentValue &&
