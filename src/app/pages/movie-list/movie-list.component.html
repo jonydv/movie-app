@@ -36,7 +36,6 @@
           <span *ngIf="type == 'SEARCH'">"{{ query }}"</span>
         </h3>
         <app-infinite-scroll
-          [moviesData]="moviesResults"
           [type]="type"
           [query]="query"
           [genre]="genre"

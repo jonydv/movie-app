@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SiteLogoComponent } from './site-logo.component';
 
@@ -8,9 +9,9 @@ describe('SiteLogoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SiteLogoComponent ]
-    })
-    .compileComponents();
+      declarations: [SiteLogoComponent],
+      imports: [RouterTestingModule.withRoutes([])],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SiteLogoComponent);
     component = fixture.componentInstance;

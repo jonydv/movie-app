@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SwiperModule } from 'swiper/angular';
+import { MovieModule } from '../movie/movie.module';
 
 import { MoviePosterCarouselComponent } from './movie-poster-carousel.component';
 
@@ -8,9 +11,9 @@ describe('MoviePosterCarouselComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MoviePosterCarouselComponent ]
-    })
-    .compileComponents();
+      declarations: [MoviePosterCarouselComponent],
+      imports: [RouterTestingModule.withRoutes([]), SwiperModule, MovieModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MoviePosterCarouselComponent);
     component = fixture.componentInstance;

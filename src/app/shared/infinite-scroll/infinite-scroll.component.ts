@@ -66,7 +66,7 @@ export class InfiniteScrollComponent {
     ) {
       this.initialPage = 1;
       this.movies = [];
-      this.setComponentData(this.moviesChanged!);
+      this.fetchMovieData(this.initialPage);
       window.scrollTo(0, 0);
     }
     if (
@@ -98,11 +98,13 @@ export class InfiniteScrollComponent {
   }
 
   fetchMovieData(page: number) {
-    this.movieRequest
-      .getMovies(this.type, page, this.query, this.genre)!
-      .subscribe((data) => {
-        this.setComponentData(data);
-      });
+    if (page && this.type) {
+      this.movieRequest
+        .getMovies(this.type, page, this.query, this.genre)!
+        .subscribe((data) => {
+          this.setComponentData(data);
+        });
+    }
   }
 
   setComponentData(data: MoviesData) {

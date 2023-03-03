@@ -27,7 +27,7 @@ export class MovieDetailsComponent {
     private breakpointService: BreakpointService,
     private movieRequest: MovieRequestService
   ) {
-    this.movie$ = this.activatedRoute.data.pipe(
+    this.movie$ = this.activatedRoute?.data?.pipe(
       map((movie) => movie['data']),
       tap((movie) => {
         let genres: string;
