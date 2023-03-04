@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
     this.nowPlayingTotalPages
   );
   nowPlayingMovies$: Observable<Movie[]> = this.movieRequestService
-    .getNowPlaying(this.requestNowPlayingPage)
+    // .getNowPlaying(this.requestNowPlayingPage) sometimes get movies with the backdrop_path in null (TODO fix it and make another call to the api)
+    .getNowPlaying()
     .pipe(map((data) => this.filterMoviesWithoutPosterPath(data, true)));
   upcomingMovies$: Observable<Movie[]> = this.movieRequestService
     .getUpcoming()
