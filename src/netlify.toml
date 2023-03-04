@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build:ssr"
+  command = "npm run prerender"
   publish = "dist/movie-app/browser"
   functions = "dist/movie-app/server/main.js"
 [[redirects]]
