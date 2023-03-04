@@ -46,7 +46,7 @@ export class InfiniteScrollComponent {
       this.initialPage = 1;
       this.movies = [];
       this.setComponentData(this.moviesChanged!);
-      window.scrollTo(0, 0);
+      //window.scrollTo(0, 0);
     }
     if (
       changes['moviesData']?.currentValue &&
@@ -67,7 +67,7 @@ export class InfiniteScrollComponent {
       this.initialPage = 1;
       this.movies = [];
       this.fetchMovieData(this.initialPage);
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
     }
     if (
       (changes['genre']?.currentValue && !changes['genre']?.firstChange) ||
@@ -76,7 +76,7 @@ export class InfiniteScrollComponent {
       this.initialPage = 1;
       this.movies = [];
       this.fetchMovieData(this.initialPage);
-      window.scrollTo(0, 0);
+      //window.scrollTo(0, 0);
     }
     if (
       changes['type']?.currentValue &&

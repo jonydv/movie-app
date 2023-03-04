@@ -13,7 +13,7 @@ import { FooterModule } from './shared/footer/footer.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     RouterModule,
     InterceptorsModule,

@@ -41,7 +41,7 @@ export class MovieDetailsComponent {
           movie.poster_path != null
             ? `${environment.baseImageUrl}w500/${movie.poster_path}`
             : '../../../assets/images/no-poster.jpg';
-        window.scrollTo(0, 0);
+        //window.scrollTo(0, 0);
       })
     );
   }
