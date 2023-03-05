@@ -7,14 +7,25 @@ export class ScrollLockService {
   constructor() {}
 
   lock() {
-    document?.body?.classList?.add('lock');
+    this.validateSSR() ? null : document?.body?.classList?.add('lock');
   }
 
   unlock() {
-    document?.body?.classList?.remove('lock');
+    this.validateSSR() ? null : document?.body?.classList?.remove('lock');
   }
 
   handleLockBodyScroll(isVisible: boolean): void {
-    document?.body?.classList?.toggle('lock-scroll', isVisible);
+    this.validateSSR()
+      ? null
+      : document?.body?.classList?.toggle('lock-scroll', isVisible);
+  }
+
+  validateSSR() {
+    const isSSR = typeof window === 'undefined';
+    if (isSSR) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
