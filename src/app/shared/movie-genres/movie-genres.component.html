@@ -5,6 +5,7 @@
     [queryParams]="fromMovieList ? genre.queryParams : { genre: genre.id }"
     class="movie-details__genres-item"
     [ngClass]="{ active: genre.active }"
-    >{{ genre.name }}</a
-  >
+    >{{ genre.name }}
+    <i *ngIf="fromMovieList && genre.active" class="fas fa-times"></i
+  ></a>
 </div>

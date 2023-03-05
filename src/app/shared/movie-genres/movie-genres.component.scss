@@ -15,6 +15,9 @@
     &.active {
       background: $primary;
       color: $dark;
+      display: flex;
+      align-items: center;
+      column-gap: 0.5rem;
     }
   }
 }
