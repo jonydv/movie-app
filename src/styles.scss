@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "node_modules/swiper/swiper.scss";
-@import "src/styles/variables/variables.scss";
-@import "src/styles/mixins/scrollbar.scss";
 @import "animate.css";
+@import "src/styles/main.scss";
+@import "src/styles/mixins/scrollbar.scss";
 html {
   scroll-behavior: smooth;
   --webkit-font-smoothing: antialiased;
