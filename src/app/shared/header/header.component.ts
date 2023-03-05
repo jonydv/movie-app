@@ -12,9 +12,7 @@ import { startWith } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isMobile$: Observable<boolean> = this.breakpointService
-    .isMobile()
-    .pipe(startWith(true));
+  isMobile$: Observable<boolean> = this.breakpointService.isMobile();
   showNav: boolean = false;
   showSearchBox: boolean = false;
   navItems: Header[] = [

@@ -13,7 +13,12 @@
       (click)="resetSearch()"
       *ngIf="query.value.length > 0"
     ></i>
-    <button *ngIf="isMobile" type="button" class="searchbox__close">
+    <button
+      *ngIf="isMobile"
+      type="button"
+      class="searchbox__close"
+      (click)="closeSearch()"
+    >
       {{ closeText }}
     </button>
   </div>

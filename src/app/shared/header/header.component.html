@@ -1,74 +1,68 @@
-<ng-container
-  *ngIf="{
-    isMobile: isMobile$ | async
-  } as info"
->
-  <header class="header">
-    <div class="header-container">
-      <nav
-        class="header-container__nav"
-        *ngIf="!info.isMobile; else mobileHeader"
-      >
-        <app-site-logo></app-site-logo>
-        <app-searchbox></app-searchbox>
-        <div class="header-container__nav__links">
-          <ng-container *ngFor="let item of navItems">
-            <a
-              [routerLink]="item?.link"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="activeLinkOptions"
-              class="header-container__nav__links-item"
-            >
-              <i class="fa-solid fa-clapperboard"></i>
-              {{ item.title }}
-            </a>
-          </ng-container>
-        </div>
-      </nav>
-    </div>
-    <div
-      class="nav-backdrop"
-      *ngIf="info.isMobile && showNav"
+<header class="header">
+  <div class="header-container">
+    <nav
+      class="header-container__nav"
+      *ngIf="!(isMobile$ | async); else mobileHeader"
+    >
+      <app-site-logo></app-site-logo>
+      <app-searchbox></app-searchbox>
+      <div class="header-container__nav__links">
+        <ng-container *ngFor="let item of navItems">
+          <a
+            [routerLink]="item?.link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="activeLinkOptions"
+            class="header-container__nav__links-item"
+          >
+            <i class="fa-solid fa-clapperboard"></i>
+            {{ item.title }}
+          </a>
+        </ng-container>
+      </div>
+    </nav>
+  </div>
+  <div
+    class="nav-backdrop"
+    *ngIf="(isMobile$ | async) && showNav"
+    (click)="toggleShowNav()"
+  >
+    <nav
+      class="header-container__mobile__nav animate__animated animate__fadeIn"
+    >
+      <div class="header-container__mobile__nav__links">
+        <ng-container *ngFor="let item of navItems">
+          <a
+            [routerLink]="item?.link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="activeLinkOptions"
+            class="header-container__mobile__nav__links-item"
+          >
+            <i class="fa-solid fa-clapperboard"></i>
+            {{ item.title }}
+          </a>
+        </ng-container>
+      </div>
+    </nav>
+  </div>
+  <app-searchbox
+    *ngIf="showSearchBox && (isMobile$ | async)"
+    [isMobile]="(isMobile$ | async)!"
+    (close)="closeSearch($event)"
+  ></app-searchbox>
+</header>
+<ng-template #mobileHeader>
+  <app-site-logo></app-site-logo>
+  <button
+    class="header-container__icon"
+    type="button"
+    (click)="toggleShowSearchbox()"
+  >
+    <i class="fas fa-search"></i>
+  </button>
+  <div class="header-container__hamburger">
+    <i
+      [class]="showNav ? 'fas fa-times' : 'fas fa-bars'"
       (click)="toggleShowNav()"
-    >
-      <nav
-        class="header-container__mobile__nav animate__animated animate__fadeIn"
-      >
-        <div class="header-container__mobile__nav__links">
-          <ng-container *ngFor="let item of navItems">
-            <a
-              [routerLink]="item?.link"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="activeLinkOptions"
-              class="header-container__mobile__nav__links-item"
-            >
-              <i class="fa-solid fa-clapperboard"></i>
-              {{ item.title }}
-            </a>
-          </ng-container>
-        </div>
-      </nav>
-    </div>
-    <app-searchbox
-      *ngIf="showSearchBox && info.isMobile"
-      [isMobile]="info.isMobile!"
-      (close)="closeSearch($event)"
-    ></app-searchbox>
-  </header>
-  <ng-template #mobileHeader>
-    <app-site-logo></app-site-logo>
-    <button
-      class="header-container__icon"
-      type="button"
-      (click)="toggleShowSearchbox()"
-    >
-      <i class="fas fa-search"></i>
-    </button>
-    <div class="header-container__hamburger">
-      <i
-        [class]="showNav ? 'fas fa-times' : 'fas fa-bars'"
-        (click)="toggleShowNav()"
-      ></i>
-    </div>
-  </ng-template>
-</ng-container>
+    ></i>
+  </div>
+</ng-template>
