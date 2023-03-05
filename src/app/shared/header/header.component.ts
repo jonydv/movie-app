@@ -4,6 +4,7 @@ import { ScrollLockService } from 'src/app/services/scroll-lock.service';
 import { Observable } from 'rxjs';
 import { Header } from '../interfaces/header.interface';
 import { IsActiveMatchOptions } from '@angular/router';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,9 @@ import { IsActiveMatchOptions } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isMobile$: Observable<boolean> = this.breakpointService.isMobile();
+  isMobile$: Observable<boolean> = this.breakpointService
+    .isMobile()
+    .pipe(startWith(true));
   showNav: boolean = false;
   showSearchBox: boolean = false;
   navItems: Header[] = [
