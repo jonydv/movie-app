@@ -18,6 +18,7 @@
       [alt]="movies[posterIndex].title"
       [routerLink]="'/movie/' + movies[posterIndex].id"
       [ngClass]="{ 'no-poster': movies[posterIndex].poster_path == null }"
+      loading="lazy"
     />
     <ng-container *ngIf="isMobile">
       <img
@@ -27,6 +28,7 @@
         [routerLink]="'/movie/' + ids[i]"
         class="movies-grid__backdrops-img"
         [ngClass]="{ 'no-poster': movies[i].poster_path == null }"
+        loading="lazy"
       />
     </ng-container>
   </div>
@@ -38,6 +40,7 @@
       [routerLink]="'/movie/' + ids[i]"
       class="movies-grid__backdrops-img"
       [ngClass]="{ 'no-poster': movies[i].poster_path == null }"
+      loading="lazy"
     />
   </div>
 </div>

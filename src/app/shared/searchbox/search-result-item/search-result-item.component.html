@@ -1,6 +1,6 @@
 <ng-container *ngIf="movie">
   <a class="search-item" (click)="navigateToMovieDetails(movie.id)">
-    <img [src]="posterPath" [alt]="movie.original_title" />
+    <img [src]="posterPath" [alt]="movie.original_title" loading="lazy" />
     <div class="search-item__info">
       <p class="search-item__info__name">{{ movie.original_title }}</p>
       <p class="search-item__info__date">{{ movie.release_date }}</p>

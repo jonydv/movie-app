@@ -7,7 +7,7 @@
           nextEl: '.right-hero',
           prevEl: '.left-hero'
         }"
-        [autoplay]="{ delay: 5000 }"
+        [autoplay]="{ delay: 7000 }"
         [loop]="true"
       >
         <ng-container *ngFor="let movie of movies; index as i">
@@ -29,14 +29,11 @@
               }}</a>
             </div>
             <img
-              [src]="
-                movieBackdropBaseUrl +
-                (isMobile ? 'w500' : 'original') +
-                movie.backdrop_path
-              "
+              [src]="movieBackdropBaseUrl + 'original' + movie.backdrop_path"
               [alt]="movie?.title"
               class="principal-image"
-              [loading]="i > 2 ? 'lazy' : 'eager'"
+              [loading]="i > 0 ? 'lazy' : 'eager'"
+              [attr.fetchPriority]="i > 0 ? 'low' : 'high'"
             />
           </ng-template>
         </ng-container>

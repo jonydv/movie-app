@@ -12,6 +12,7 @@
           [src]="baseImageUrl + cast.profile_path"
           [alt]="cast.name"
           *ngIf="cast.profile_path"
+          loading="lazy"
         />
         <img
           [src]="profileUrl"

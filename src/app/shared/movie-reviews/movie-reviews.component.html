@@ -13,12 +13,14 @@
           "
           [alt]="review?.author_details?.username"
           class="reviews-container__item-header-img"
+          loading="lazy"
         />
         <ng-template #apiImage>
           <img
             [src]="baseImageUrl + review?.author_details?.avatar_path"
             [alt]="review?.author_details?.username"
             class="reviews-container__item-header-img"
+            loading="lazy"
           />
         </ng-template>
       </ng-container>
@@ -27,6 +29,7 @@
           src="../../../assets/images/user.jpg"
           [alt]="review?.author_details?.username"
           class="reviews-container__item-header-img"
+          loading="lazy"
         />
       </ng-template>
       <p class="reviews-container__item-header-name">

@@ -1,6 +1,6 @@
 <div class="movie">
   <a [routerLink]="movieDetailUrl" class="movie__link">
-    <img [src]="imageUrl" [alt]="movie?.title" />
+    <img [src]="imageUrl" [alt]="movie?.title" loading="lazy" />
   </a>
   <app-movie-info-details
     *ngIf="fromList"
