@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -14,8 +13,4 @@ export class FooterComponent {
     'https://www.linkedin.com/in/jonatan-david-villalba-9126951b9/',
     'https://jonatandvillalbaweb.com.ar/',
   ];
-  constructor(@Inject(DOCUMENT) private document: Document) {}
-  scrollToTop(): void {
-    this.document.documentElement.scrollTop = 0;
-  }
 }
